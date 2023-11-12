@@ -5,8 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d9a29e7-187c-4679-be4f-50a96f689c9b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/snapchef_website/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/snapchef_website/src/components/uploadImage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/reportWebVitals.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/setupTests.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,10 +39,13 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2Y2oaeh0j918I6qNtqw9sd1lu0a" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -33,6 +56,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "react-app-image",
+    "javascript.nodejs.core.library.configured.version": "18.13.0",
+    "javascript.nodejs.core.library.typings.version": "18.13.0",
     "last_opened_file_path": "C:/Users/injun/Documents/food_docker/SnapChef",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -43,6 +68,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\injun\Documents\food_docker\SnapChef\snapchef_website" />
+      <recent name="C:\Users\injun\Documents\food_docker\SnapChef\snapchef_site" />
+      <recent name="C:\Users\injun\Documents\food_docker\SnapChef" />
+      <recent name="C:\Users\injun\Documents\food_docker\SnapChef\backend" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
