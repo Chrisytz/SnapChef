@@ -1,0 +1,45 @@
+train: /Users/chrisytz/Coding_Projects/SnapChef/help/images/train
+test: /Users/chrisytz/Coding_Projects/SnapChef/help/images/test
+val: /Users/chrisytz/Coding_Projects/SnapChef/help/images/val
+
+names:
+  0: carrot
+  1: egg
+  2: onion
+  3: chicken
+  4: pork
+  5: steak
+  6: red cabbage
+  7: zucchini
+  8: green onion
+  9: tomato
+  10: radish
+  11: potato
+  12: eggplant
+  13: broccoli
+  14: fasol
+  15: lettuce
+  16: bell pepper
+  17: pumpkin
+  18: beet
+  19: cauliflower
+  20: cabbage
+  21: beans
+  22: brussel sprouts
+  23: hot pepper
+  24: avocado
+  25: cucumber
+  26: garlic
+  27: squash-patisson
+  28: corn
+  29: celery
+  30: peas
+  31: milk
+  32: spam
+  33: soybean paste
+  34: pepper paste
+  35: tofu
+  36: tuna can
+  37: rice cake
+  38: kimchi
+path: /Users/chrisytz/Coding_Projects/SnapChef/valid_yolo
