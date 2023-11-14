@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function UploadImage() {
     const[image, setImage] = useState("");
-
+    const[imageDB, setImageDB] = useState([]);
     function convertToBase64(e) {
         console.log(e)
 
@@ -17,6 +17,9 @@ function UploadImage() {
             console.log("Error:", error)
         };
     }
+    useEffect(() => {
+        getImage()
+    },[])
 
     function uploadImage() {
         fetch("http://localhost:8080/uploadImage", {
@@ -33,6 +36,16 @@ function UploadImage() {
         }).then((res) => res.json()).then((data) => console.log(data))
     }
 
+    function getImage() {
+        fetch("http://localhost:8080/getImage", {
+            method: "GET",
+
+        }).then((res) => res.json()).then((data) => {
+            console.log(data)
+            setImageDB(data.data)
+        })
+    }
+
     return (
         <div className = "auth-wrapper">
             <div className = "auth-inner" style = {{width: "auto"}}>
@@ -45,6 +58,12 @@ function UploadImage() {
             />
             {image == "" || image==null?"" : <img alt = "test" width = {200} height = {200} src = {image} />}
             <button onClick = {uploadImage}> Upload </button>
+
+            {imageDB.map(data => {
+                return(
+                    <img alt = "run" src = {data.image} width = {100} height = {100} />
+                )
+            })}
         </div>
     )
 }

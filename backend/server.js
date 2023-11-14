@@ -39,7 +39,7 @@ server.post("/uploadImage", async(req, res) => {
     }
 })
 
-server.post("/getImage", async(req, res) => {
+server.get("/getImage", async(req, res) => {
     try {
         Images.find({}).then(data => {
             res.send({status: "ok", data: data})

@@ -5,28 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d9a29e7-187c-4679-be4f-50a96f689c9b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/snapchef_website/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/snapchef_website/src/components/uploadImage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/snapchef/src/setupTests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/reportWebVitals.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snapchef/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/setupTests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snapchef_website/src/components/uploadImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/snapchef_website/src/components/uploadImage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +45,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "ts.external.directory.path": "C:\\Users\\injun\\Documents\\food_docker\\SnapChef\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -92,8 +76,18 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="53b26659-b840-404a-a0d6-540a2d149a08" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="53b26659-b840-404a-a0d6-540a2d149a08">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
