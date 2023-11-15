@@ -36,7 +36,7 @@ function UploadImage() {
         }).then((res) => res.json()).then((data) => console.log(data))
     }
 
-    function getImage() {
+    async function getImage() {
         fetch("http://localhost:8080/getImage", {
             method: "GET",
 
