@@ -51,26 +51,7 @@ server.post("/uploadImage", async(req, res) => {
     const {base64} = req.body;
     try {
         Images.create({image:base64});
-        
-        const {exec} = require('child_process')
-        const command = 'python model_train/image_run.py "${base64}"';
-        
-        // const exec_command = spawn('python', ['model_train/image_run.py', base64])
-        
-        const binaryData = Buffer.from(base64, 'base64');
-        const filePath = 'model_train/test.png';
-        
-        fs.writeFileSync(filePath, binaryData);
-
-        console.log('Image saved successfully:', filePath);
-
-        // exec(exec_command, (error, stdout, stderr) => {
-        //     if(error) {
-        //         console.error("Error", error.message);
-        //         return;
-        //     }
-        // })
-
+    
         res.send({Status: "ok"})
     } catch(error) {
         console.log("Erorr", error)
@@ -93,5 +74,16 @@ server.get("/upload", (req, res) => {
 })
 
 server.post("/upload", upload.single('image'), (req, res) => {
-    res.send("image uploaded")
+    console.log("image uploaded")
+
+    const {exec} = require('child_process')
+    
+    const exec_command = spawn('python model_train/image_run.py')
+    
+    exec(exec_command, (error, stdout, stderr) => {
+        if(error) {
+            console.error("Error", error.message);
+            return;
+        }
+    })
 })
