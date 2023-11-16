@@ -58,12 +58,13 @@ function UploadImage() {
             />
             {image == "" || image==null?"" : <img alt = "test" width = {200} height = {200} src = {image} />}
             <button onClick = {uploadImage}> Upload </button>
-
+            {/*
             {imageDB.map(data => {
                 return(
                     <img alt = "run" src = {data.image} width = {100} height = {100} />
                 )
             })}
+            */}
         </div>
     )
 }
