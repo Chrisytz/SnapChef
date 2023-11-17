@@ -1,0 +1,9 @@
+.object-list {
+    text-align: left;
+    list-style: none;
+    margin-left: 0;
+}
+
+.object-item {
+    margin-bottom: 8px;
+}

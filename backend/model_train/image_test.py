@@ -4,7 +4,6 @@ import os
 from collections import defaultdict
 import shutil
 import json
-import time
 # Load a model
 
 categories = {
@@ -51,34 +50,39 @@ categories = {
 
 def main():
     directory = ""
-    pattern = os.path.join(directory, 'model_train/model*')
+    pattern = os.path.join(directory, 'model*')
 
     match_file = glob.glob(pattern)
 
     try:
         file_path = match_file[0]
-        print("yo", file_path)
-        model = YOLO("model_train/best.pt")  # load a pretrained model (recommended for training)
-        results = model(file_path, save = True, save_txt = True)  # predict on an image
         
-        model_file = "runs/detect/predict/labels/model.txt"
+        model = YOLO("best.pt")  # load a pretrained model (recommended for training)
+        results = model(file_path, save = True, save_txt = True)  # predict on an image
+        print(results)
 
+        model_file = "runs/detect/predict/labels/model.txt"
+        
+        if not os.path.exists(model_file): 
+            print("There were no detections")
+            return
+        
         detected = defaultdict(int)
 
-        if os.path.exists(model_file): 
-            with open(model_file, 'r') as file:
-                for line in file:
-                    first_word = line.split()[0]
-                    detected[categories[first_word]] += 1
-        
-        
-        with open('../objects.json', 'w') as json_file:
+        with open(model_file, 'r') as file:
+            for line in file:
+                first_word = line.split()[0]
+                print(categories[first_word])
+                detected[categories[first_word]] += 1
+                
+        with open('objects.json', 'w') as json_file:
             json.dump(detected, json_file)
         
 
     except Exception as e:
         print("invalid file")
         print(e)
+        shutil.rmtree("runs")
 
 
 if __name__ == "__main__":
