@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         console.log(file);
-        cb(null, Date.now() + path.extname(file.originalname))
+        cb(null,"model" + path.extname(file.originalname))
     }
 })
 
@@ -50,7 +50,7 @@ server.listen(PORT, () => console.log(`Server running on ${PORT}`));
 server.post("/uploadImage", async(req, res) => {
     const {base64} = req.body;
     try {
-        Images.create({image:base64});
+        // Images.create({image:base64});
     
         res.send({Status: "ok"})
     } catch(error) {
@@ -75,15 +75,14 @@ server.get("/upload", (req, res) => {
 
 server.post("/upload", upload.single('image'), (req, res) => {
     console.log("image uploaded")
+    
+    const exec_command = spawn('python', ['model_train/image_run.py'])
+    
+    exec_command.stdout.on('data', function (data) {
+        console.log('Pipe data from python script ...');
+        dataStr = data.toString();
+        console.log(dataStr)
+    });
 
-    const {exec} = require('child_process')
-    
-    const exec_command = spawn('python model_train/image_run.py')
-    
-    exec(exec_command, (error, stdout, stderr) => {
-        if(error) {
-            console.error("Error", error.message);
-            return;
-        }
-    })
+   
 })
