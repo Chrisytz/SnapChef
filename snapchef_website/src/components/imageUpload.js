@@ -7,20 +7,6 @@ function ImageUpload() {
     const [objectImage, setObjectImage] = useState([])
     const [displayModel, setDisplayModel] = useState(null)
 
-    function convertToBase64(e) {
-        console.log(e)
-
-        let reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = () => {
-            console.log(reader.result);
-            setImage(reader.result);
-        };
-
-        reader.onerror = error => {
-            console.log("Error:", error)
-        };
-    }
     useEffect(() => {
         // getImage()
         getObjectImage()
@@ -70,29 +56,16 @@ function ImageUpload() {
         .then(data => {
             // Handle the response as needed
             console.log(data);
-            setJsonData(data);
-            late_display();
+            setJsonData(data.json.objects);
+            console.log(jsonData)
+            setDisplayModel(data.json.images.image);
+            console.log(displayModel)
         })
         .catch(error => {
             console.error('Error submitting form:', error);
         });        
     }
 
-    function late_display() {
-        fetch('http://localhost:8080/getImageModel', {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response as needed
-            const image64 = data.image; 
-            setDisplayModel(image64);
-        })
-        .catch(error => {
-            console.error('Error getting image:', error);
-        });
-    }
-    
     return (
         <div className = "test-wrapper">
             <h1> Upload Image </h1>
@@ -102,17 +75,12 @@ function ImageUpload() {
              </form>
             
             <div className = "object-list">
-                <ul>
-                    {Object.keys(jsonData).map(key => (
-                    <ul key={key} className = "object-list">
-                        {Object.keys(jsonData[key]).map(subKey => (
-                        <li key={subKey} className="object-item">
-                            <strong>{subKey}:</strong> {jsonData[key][subKey]}
-                            
-                        </li>
-                        ))}
-                    </ul>
-                    ))}
+                <ul className = "object-list">
+                {Object.entries(jsonData).map(([key, value]) => (
+                    <li key={key} className="object-item" >
+                    <strong>{key}:</strong> {value}
+                    </li>
+                ))}
                 </ul>
 
                 {displayModel && (

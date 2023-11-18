@@ -5,9 +5,6 @@ const server = express();
 const mongoose = require('mongoose');
 const mongoUrl = "mongodb+srv://ybob566:A7brCxJT1QlJOzcW@image-object-detection.h1ikzcu.mongodb.net/?retryWrites=true&w=majority"
 
-
-let cur_img = ""
-
 const fs = require('fs')
 
 const path = require('path')
@@ -86,15 +83,6 @@ server.get("/getImageSchema", async(req, res) => {
     }
 })
 
-server.get("/upload", (req, res) => {
-    res.render("upload");
-
-})
-
-server.get("/getImageModel", async(req, res) => {
-    res.send({image: cur_img});
-})
-
 server.post("/upload", upload.single('image'), (req, res) => {
     console.log("image uploaded")
     
@@ -148,8 +136,10 @@ server.post("/upload", upload.single('image'), (req, res) => {
         try {
             const fileContent = fs.readFileSync(jsonFilePath, 'utf8');
             let jsonData = JSON.parse(fileContent)
-        
-            res.json({jsonData});
+            json = {}
+            json.objects = jsonData
+            json.images = {image: img}
+            res.json({json});
         } catch (err) {
             res.status(500).json({ error: "Error parsing JSON file", message: err.message });
         }
