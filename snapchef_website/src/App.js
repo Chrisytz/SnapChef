@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import History from "./pages/history";
 
 import ImageClient from "./pages/imageClient"
-import Nav from "./pages/layout";
+import Nav from "./pages/nav";
 import NoPage from "./pages/noPage";
 
 function App() {
