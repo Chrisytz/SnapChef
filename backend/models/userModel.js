@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// schema that defines the user collection
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -19,4 +20,5 @@ const userSchema = mongoose.Schema({
         timestamps: true
     })
 
+// exporting user model
 module.exports = mongoose.model('User', userSchema)

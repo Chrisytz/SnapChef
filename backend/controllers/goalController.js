@@ -2,10 +2,12 @@ const asyncHandler = require('express-async-handler')
 
 const Goal = require('../models/goalModel')
 const User = require('../models/userModel')
+
 // @desc    Get goals
 // @route   GET /api/goals
 // @access  Private
 const getGoals = asyncHandler(async (req, res) => {
+    //! req.user is set in authMiddleware
     const goals = await Goal.find({ user: req.user.id})
     res.status(200).json(goals)
 })
@@ -14,6 +16,7 @@ const getGoals = asyncHandler(async (req, res) => {
 // @route   POST /api/goals
 // @access  Private
 const setGoal = asyncHandler(async (req, res) => {
+    // req.body is a property of the req object
     if (!req.body.text) {
         res.status(400)
         throw new Error('please add a text field')
@@ -37,16 +40,14 @@ const updateGoal = asyncHandler(async (req, res) => {
         throw new Error('goal not found')
     }
 
-    const user = await User.findById(req.user.id)
-
     // check for user
-    if (!user) {
+    if (!req.user) {
         res.status(401)
         throw new Error('user not found')
     }
 
     // make sure that logged in user matches the goal user
-    if (goal.user.toString() !== user.id) {
+    if (goal.user.toString() !== req.user.id) {
         rew.status(401)
         throw new Error('user not authorized')
     }
@@ -66,16 +67,14 @@ const deleteGoal = asyncHandler(async (req, res) => {
         throw new Error('goal not found')
     }
 
-    const user = await User.findById(req.user.id)
-
     // check for user
-    if (!user) {
+    if (!req.user) {
         res.status(401)
         throw new Error('user not found')
     }
 
     // make sure that logged in user matches the goal user
-    if (goal.user.toString() !== user.id) {
+    if (goal.user.toString() !== req.user.id) {
         rew.status(401)
         throw new Error('user not authorized')
     }

@@ -1,4 +1,5 @@
 // auth global state
+// thunks are functions that can be dispatched and contain async logic
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import authService from './authService'
 
@@ -66,6 +67,17 @@ export const authSlice = createSlice({
             .addCase(register.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
+                // payload is the data that comes with the action, so once register runs successfully, it returns authService.register(user)
+                // and register(user) in authService returns response.data, which means action.payload = response.data
+                // in our backend in userController.js we return this object from our register
+                /*
+                {
+                    _id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    token: generateToken(user._id)
+                }
+                */
                 state.user = action.payload
             })
             .addCase(register.rejected, (state, action) => {

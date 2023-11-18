@@ -20,6 +20,7 @@ function Login() {
     // getting const vars from global auth state
     const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
 
+    // runs on initial render and when state changes
     useEffect(() => {
         if (isError) {
             toast.error(message)
@@ -35,7 +36,10 @@ function Login() {
 
     const onChange = (e) => {
         setFormData((prevState) => ({
+            // The spread operator (...) is used to create a shallow copy of the previous state (prevState).
+            // This is a common pattern in React when updating state to avoid mutating the original state.
             ...prevState,
+            // update the right key with the right value ("email" with {email} and "password" with {password})
             [e.target.name]: e.target.value,
         }))
     }

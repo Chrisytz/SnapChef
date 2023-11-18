@@ -15,6 +15,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     // check if user exists
+    // {email} is shorthand from {email: email}, where the second email is the email from the req body
     const userExists = await User.findOne({email})
 
     if (userExists) {
@@ -54,6 +55,12 @@ const loginUser = asyncHandler(async (req, res) => {
 
     // check for user email
     const user = await User.findOne({email})
+
+    // user.id is a convenience method provided by mongoose, when called,
+    // Mongoose internally calls the toString() method on the _id property to convert it to a string
+
+    // user._id directly accesses the _id property of the Mongoose document.
+    // If you use user._id, you get the raw ObjectId value without any automatic conversion.
     if (user && (await bcrypt.compare(password, user.password))) {
         res.status(201).json({
             _id: user.id,
@@ -71,13 +78,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
-    const {_id, name, email} = await User.findById(req.user.id)
-
-    res.status(200).json({
-        id: _id,
-        name,
-        email
-    })
+    res.status(200).json(req.user)
 })
 
 // generate JWT

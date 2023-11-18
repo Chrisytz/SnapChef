@@ -5,6 +5,7 @@ const User = require('../models/userModel')
 const protect = asyncHandler(async (req, res, next) => {
     let token
 
+    // since the token will start with 'Bearer ...'
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             // get token from header
@@ -17,6 +18,8 @@ const protect = asyncHandler(async (req, res, next) => {
             req.user = await User.findById(decoded.id).select('-password')
 
             // calls the next piece of middleware
+            // the next piece of middleware refers to whatever comes after the 'protect' in
+            // router.get('/me', protect, getMe) - in this case there is no more middleware, so it would just run getMe
             next()
         } catch (error) {
             console.log(error)
