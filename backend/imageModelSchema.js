@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 
 const ImageModelSchema = new mongoose.Schema(
     {
@@ -10,4 +12,5 @@ const ImageModelSchema = new mongoose.Schema(
     }
 )
 
+ImageModelSchema.plugin(mongoosePaginate);
 mongoose.model("ImageSchema", ImageModelSchema)
