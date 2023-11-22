@@ -10,6 +10,7 @@ export default function Nav(){
            <ul className="nav-links">
               <Link to="/">Home</Link>
               <Link to="/history">History </Link>
+              <Link to="/webcam">Webcam </Link>
            </ul>
         </div>
   );
