@@ -5,6 +5,7 @@ from collections import defaultdict
 import shutil
 import json
 import time
+import sys
 # Load a model
 
 categories = {
@@ -52,11 +53,11 @@ categories = {
 def main():
     directory = ""
     pattern = os.path.join(directory, 'model_train/model*')
-
+    print(pattern)
     match_file = glob.glob(pattern)
-
+    
     try:
-        file_path = match_file[0]
+        file_path =  match_file[0]
         print("yo", file_path)
         model = YOLO("model_train/best.pt")  # load a pretrained model (recommended for training)
         results = model(file_path, save = True, save_txt = True)  # predict on an image

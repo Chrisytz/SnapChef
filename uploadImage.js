@@ -14,7 +14,7 @@ function UploadImage() {
         };
 
         reader.onerror = error => {
-            console.log("Error:", error)
+            console.log("Error 36:", error)
         };
     }
     useEffect(() => {

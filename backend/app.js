@@ -25,6 +25,6 @@ mongoose
   .then(() => {
     console.log('Connected to the database');
   })
-  .catch((e) => console.log(e));
+  .catch((e) => console.log("WHAT", e));
 
 module.exports = app;

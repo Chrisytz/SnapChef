@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import ImageGallery from "../components/imageGallery";
 import Webcam from "react-webcam"
 
+
 import {useRef} from "react"
 
 export default function WebcamPage(){
@@ -63,10 +64,12 @@ export default function WebcamPage(){
     return(
             <div className = "webcam-container">
             <h1>Video Stream</h1>
-            
-            <button onClick={toggleCamera}>
+           
+                <button onClick={toggleCamera}>
                 {camera ? 'Turn Camera Off' : 'Turn Camera On'}
             </button>
+           
+           
 
             {camera && <img src="http://localhost:5000/video_feed?${new Date().getTime()}" 
                             alt="Video Stream"

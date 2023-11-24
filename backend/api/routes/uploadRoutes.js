@@ -19,28 +19,33 @@ const storage = multer.diskStorage({
         cb(null, "model_train")
     },
     filename: (req, file, cb) => {
+    
         console.log(file);
         cb(null,"model" + path.extname(file.originalname))
+        console.log("FILE STORED")
     }
 })
 
 const upload = multer({storage: storage})
 
 router.post("/upload", upload.single('image'), (req, res) => {
-    console.log("image uploaded")
     
-    const exec_command = spawn('python', ['model_train/image_run.py'])
-    
+    const scriptFilename = path.join(__dirname, '../../model_train', 'image_run.py');
+    const exec_command = spawn('python3', [scriptFilename])
+
     exec_command.stdout.on('data', function (data) {
         console.log('Pipe data from python script ...');
         dataStr = data.toString();
         console.log(dataStr)
     });
-
+    
+    exec_command.stderr.on('data', (data) => {
+        console.error(`stderr: ${data.toString()}`);
+    });
+    
     exec_command.on('close', (code) => {
         console.log(`Python script exited with code ${code}`);
       
-        // Now that the Python script has finished, process the JSON file
         storeImage();
         
     });
@@ -50,6 +55,15 @@ router.post("/upload", upload.single('image'), (req, res) => {
         try {
             var files = fs.readdirSync(directoryPath).filter(fn => fn.startsWith('model'));
             console.log(files)
+            
+            fs.unlink("model_train/" + files[0], (err) => {
+                if (err) {
+                    console.error(`Error deleting file: ${err}`);
+                    return;
+                }
+                console.log(`File '${files[0]}' was deleted successfully.`);
+            });
+
             const file = "runs/detect/predict/" + files[0]
            
             const imageBuffer = fs.readFileSync(file);
@@ -65,7 +79,6 @@ router.post("/upload", upload.single('image'), (req, res) => {
             cur_img = image_str
             ImageModel.create({id:"model",image:image_str});
             
-
             processJsonFile(image_str);
         } catch(error) {
             console.log(error);
