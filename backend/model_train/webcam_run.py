@@ -3,7 +3,7 @@ import cv2
 import math
 
 
-def main():
+def gen_frames():
 
     cap = cv2.VideoCapture(0)
     cap.set(3, 640)
@@ -82,12 +82,16 @@ def main():
 
                 cv2.putText(img, classNames[cls], org, font, fontScale, color, thickness)
 
-        cv2.imshow('Webcam', img)
-        if cv2.waitKey(1) == ord('q'):
-            break
+                ret, buffer = cv2.imencode('.jpg', frame)
+                frame = buffer.tobytes()
 
-    cap.release()
-    cv2.destroyAllWindows()
+                yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        # cv2.imshow('Webcam', img)
+    #     if cv2.waitKey(1) == ord('q'):
+    #         break
+
+    # cap.release()
+    # cv2.destroyAllWindows()
                 
 
 if __name__ == "__main__":
