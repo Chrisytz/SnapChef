@@ -8,9 +8,17 @@ const goalSchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
-    text: {
+    recipe_name: {
         type: String,
-        required: [true, 'please add a text value']
+        required: [true, 'please add a recipe_name value']
+    },
+    ingredients: {
+        type: String,
+        required: [true, 'please add a ingredients value']
+    },
+    steps: {
+        type: [String],
+        required: [true, 'please add a steps value']
     }
 },
     {

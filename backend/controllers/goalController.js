@@ -17,13 +17,15 @@ const getGoals = asyncHandler(async (req, res) => {
 // @access  Private
 const setGoal = asyncHandler(async (req, res) => {
     // req.body is a property of the req object
-    if (!req.body.text) {
+    if (!req.body.recipe_name || !req.body.ingredients || !req.body.steps) {
         res.status(400)
-        throw new Error('please add a text field')
+        throw new Error('please add a recipe name, ingredients or steps field')
     }
 
     const goal = await Goal.create({
-        text: req.body.text,
+        recipe_name: req.body.recipe_name,
+        ingredients: req.body.ingredients,
+        steps: req.body.steps,
         user: req.user.id
     })
     res.status(200).json(goal)

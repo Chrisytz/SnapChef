@@ -17,8 +17,12 @@ function Header() {
     return (
         <header className='header'>
             <div className='logo'>
-                <Link to='/'> GoalSetter </Link>
+                <Link to='/'> SnapChef </Link>
             </div>
+            {user ? (<div>
+                <Link to='/dashboard'> Dashboard </Link>
+            </div>) : (<></>)}
+
             <ul>
                 {user ? (
                     <li>

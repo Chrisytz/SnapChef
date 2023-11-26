@@ -40,19 +40,21 @@ function Dashboard() {
     return (
         <>
             <section className='heading'>
-                <h1> Welcome {user && user.name}</h1>
-                <p> Goals dashboard</p>
+                <h3> Welcome {user && user.name}</h3>
+                <p> Recipes Dashboard </p>
             </section>
             <GoalForm/>
 
             <section className='content'>
                 {goals.length > 0 ? (
                     <div className='goals'>
-                        {goals.map((goal) => (
+                        {[...goals]
+                            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                            .map((goal) => (
                             <GoalItem key={goal._id} goal={goal}/>
                         ))}
                     </div>
-                ) : (<h3>You have not set any goals</h3>)}
+                ) : (<h3>You have not generated any recipes</h3>)}
             </section>
         </>
     )
