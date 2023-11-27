@@ -126,9 +126,17 @@ def close():
     global objects
     
     dic = objects.copy()
+
+    non_exist = []
+    for i in dic: 
+        if dic[i] == 0: non_exist.append(i)  
+    
+    for i in non_exist: del dic[i]
+    
     objects = {i:0 for i in classNames}
     cap.release()
     
+
     return jsonify(dic)
 
 @app.route('/open_feed')

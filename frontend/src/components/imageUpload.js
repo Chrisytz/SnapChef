@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "../styles/imageUpload.css"
+
 
 function ImageUpload() {
     const[image, setImage] = useState("");
@@ -6,6 +8,15 @@ function ImageUpload() {
     const [jsonData, setJsonData] = useState({});
     const [objectImage, setObjectImage] = useState([])
     const [displayModel, setDisplayModel] = useState(null)
+    const [fileName, setFileName] = useState('No file chosen');
+
+    const handleButtonClick = () => {
+        document.getElementById('file-upload').click();
+    };
+
+    const handleFileChange = (event) => {
+        setFileName(event.target.files[0].name);
+    };
 
     useEffect(() => {
         // getImage()
@@ -55,12 +66,21 @@ function ImageUpload() {
     }
 
     return (
+        <div className = "container">
         <div className = "test-wrapper">
-            <h1> Upload Image </h1>
+            <h1> Snap it, cook it! </h1>
+            <h2> Upload Image </h2>
+            <br/>
+
+            
             <form id = "uploadForm" encType = "multipart/form-data"> 
-                <input type = "file" name = "image" />
+                <input type="file" name="image" id="file-upload" style={{ display: 'none' }} 
+                onChange={handleFileChange} />
+                <button type="button" id="custom-button"
+                onClick={handleButtonClick} >Choose File</button>
+                
                 <input type = "button" value = "Upload" onClick={uploadImage}/>
-             </form>
+            </form>
             
             <div className = "object-list">
                 <ul className = "object-list">
@@ -78,11 +98,9 @@ function ImageUpload() {
                     </div>
                 )}
                 </div>
-             {/* {objectImage.map(data => {
-                return(
-                    <img alt = "run" src = {data.image} width = {100} height = {100} />
-                )
-            })} */}
+                
+           
+        </div>
         </div>
     )
 }
