@@ -42,6 +42,21 @@ function Header() {
                                 <FaUser /> Register
                             </Link>
                         </li>
+                        <li>
+                            <Link to='/image'>
+                                Image
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/webcam'>
+                                Webcam
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/history'>
+                                History
+                            </Link>
+                        </li>
                     </>
                 )}
 
