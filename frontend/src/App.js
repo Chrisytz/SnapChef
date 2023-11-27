@@ -6,6 +6,9 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Header from './components/header'
+import ImageClient from './pages/imageClient'
+import History from './pages/history'
+import WebcamPage from './pages/webcam'
 function App() {
     return (
         <>
@@ -17,6 +20,9 @@ function App() {
                         <Route path='/dashboard' element={<Dashboard/>}></Route>
                         <Route path='/login' element={<Login/>}></Route>
                         <Route path='/register' element={<Register/>}></Route>
+                        <Route path='/history' element={<History/>}></Route>
+                        <Route path='/image' element={<ImageClient/>}></Route>
+                        <Route path='/webcam' element={<WebcamPage/>}></Route>
                     </Routes>
                 </div>
             </Router>
