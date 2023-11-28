@@ -18,7 +18,7 @@ router.get('/getPreviewModel', async (req, res) => {
         page: parseInt(page, 10),
         limit: parseInt(limit, 10),
       };
-      
+      console.log("paginate")
       const images = await ImageModel.paginate({}, options);
       // Sort by createdAt field in ascending order
       res.json(images);
@@ -26,6 +26,10 @@ router.get('/getPreviewModel', async (req, res) => {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
+  });
+
+  router.get('/', async (req, res) => {
+    res.send({hello: "hello"})
   });
 
 // Other routes and middleware
