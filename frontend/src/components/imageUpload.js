@@ -1,46 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../styles/imageUpload.css"
 
-
 function ImageUpload() {
-    const[image, setImage] = useState("");
-    const[imageDB, setImageDB] = useState([]);
     const [jsonData, setJsonData] = useState({});
-    const [objectImage, setObjectImage] = useState([])
+   
     const [displayModel, setDisplayModel] = useState(null)
-    const [fileName, setFileName] = useState('No file chosen');
-
-    const handleButtonClick = () => {
-        document.getElementById('file-upload').click();
-    };
-
-    const handleFileChange = (event) => {
-        setFileName(event.target.files[0].name);
-    };
-
-    useEffect(() => {
-        // getImage()
-        getObjectImage()
-    },[])
-
-    async function getImage() {
-        fetch("http://localhost:3000/getImage", {
-            method: "GET",
-
-        }).then((res) => res.json()).then((data) => {
-            console.log(data)
-            setImageDB(data.data)
-        })
-    }
-
-    async function getObjectImage() {
-        fetch("http://localhost:3000/getImageSchema", {
-            method: "GET",
-        }).then((res) => res.json()).then((data) => {
-            setObjectImage(data.data)
-            console.log(data)
-        })
-    }
 
     function uploadImage() {
 
@@ -72,16 +36,13 @@ function ImageUpload() {
             <h2> Upload Image </h2>
             <br/>
 
-            
+            <p>
+            <center>
             <form id = "uploadForm" encType = "multipart/form-data"> 
-                <input type="file" name="image" id="file-upload" style={{ display: 'none' }} 
-                onChange={handleFileChange} />
-                <button type="button" id="custom-button"
-                onClick={handleButtonClick} >Choose File</button>
-                
-                <input type = "button" value = "Upload" onClick={uploadImage}/>
-            </form>
-            
+                <input type = "file" name = "image" class = "form-input"/> 
+                <button type = "button" value = "Upload" onClick={uploadImage} class = "form-button"> Test </button>
+             </form>
+             </center>
             <div className = "object-list">
                 <ul className = "object-list">
                 {Object.entries(jsonData).map(([key, value]) => (
@@ -94,11 +55,11 @@ function ImageUpload() {
                 {displayModel && (
                     <div>
                     <h2>Image Preview:</h2>
-                    <img src={displayModel} alt="Preview" />
+                    <center><img src={displayModel} alt="Preview" /> </center>
                     </div>
                 )}
                 </div>
-                
+                </p>
            
         </div>
         </div>
