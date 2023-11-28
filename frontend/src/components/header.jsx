@@ -16,36 +16,43 @@ function Header() {
 
     return (
         <header className='header'>
-            <div className='logo'>
-                <Link to='/'> SnapChef </Link>
-            </div>
-            {user ? (<div>
-                <Link to='/dashboard'> Dashboard </Link>
-            </div>) : (<></>)}
-
-            <ul>
+            <header className='header-contents'>
+                <div className='logo'>
+                    <Link to='/'> SNAPCHEF </Link>
+                </div>
                 {user ? (
-                    <li>
-                        <button className='btn' onClick={onLogout}>
-                            <FaSignOutAlt /> Logout
-                        </button>
-                    </li>
-                ) : (
-                    <>
-                        <li>
-                            <Link to='/login'>
-                                <FaSignInAlt /> Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/register'>
-                                <FaUser /> Register
-                            </Link>
-                        </li>
-                    </>
-                )}
+                    <div>
+                        <Link to='/dashboard'> Dashboard </Link>
+                        <Link to='/recipes'> Recipes </Link>
+                    </div>
+                    )
+                    : (<></>)}
 
-            </ul>
+                <ul>
+                    {user ? (
+                        <li>
+                            <button className='btn' onClick={onLogout}>
+                                <FaSignOutAlt /> Logout
+                            </button>
+                        </li>
+                    ) : (
+                        <>
+                            <li>
+                                <Link to='/login'>
+                                    <FaSignInAlt /> Login
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to='/register'>
+                                    <FaUser /> Register
+                                </Link>
+                            </li>
+                        </>
+                    )}
+
+                </ul>
+            </header>
+
         </header>
     )
 }

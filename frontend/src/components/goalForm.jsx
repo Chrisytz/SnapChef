@@ -4,7 +4,7 @@ import {createGoal} from '../features/goals/goalSlice'
 
 import OpenAI from "openai";
 
-const openai = new OpenAI({apiKey: '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', dangerouslyAllowBrowser: true});
+const openai = new OpenAI({apiKey: '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', dangerouslyAllowBrowser: true});
 
 async function getRecipe(ingredients) {
     const completion = await openai.chat.completions.create({
@@ -40,6 +40,7 @@ function GoalForm() {
         // that is defined in goalModel.js
         dispatch(createGoal({
                 recipe_name: recipeObject['recipe_name'],
+                given_ingredients: text,
                 ingredients: JSON.stringify(recipeObject['ingredients']),
                 steps: recipeObject['steps']
                 }))

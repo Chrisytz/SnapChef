@@ -12,6 +12,10 @@ const goalSchema = mongoose.Schema({
         type: String,
         required: [true, 'please add a recipe_name value']
     },
+    given_ingredients: {
+        type: String,
+        required: [true, 'please add a ingredients value']
+    },
     ingredients: {
         type: String,
         required: [true, 'please add a ingredients value']
