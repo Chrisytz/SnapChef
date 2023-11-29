@@ -9,7 +9,7 @@
     width: 80vh;
     transition: transform 0.3s ease; /* Smooth transition for transform property */
     place-items: center;
-    
+    position: absolute;
 }
 
 .test-wrapper:hover {
@@ -18,6 +18,7 @@
 
 .container {
     height: 100vh;
+    position: relative;
 }
 
 input[type="file"] {
@@ -89,5 +90,123 @@ input[type="file"] {
     margin-bottom: 10px;
     justify-content: center;
   }
-  
-  
+
+.form-button {
+    position: relative;
+}
+/* CSS */
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(255, 255, 255); /* Optional: semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Ensure it's above other content */
+}
+
+.loader-inner {
+    bottom: 0;
+    height: 60px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+}
+
+.loader-line-wrap {
+    animation: 
+		spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
+	;
+    box-sizing: border-box;
+    height: 50px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    transform-origin: 50% 100%;
+    width: 100px;
+}
+.loader-line {
+    border: 4px solid transparent;
+    border-radius: 100%;
+    box-sizing: border-box;
+    height: 100px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+}
+.loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
+.loader-line-wrap:nth-child(2) { animation-delay: -100ms; }
+.loader-line-wrap:nth-child(3) { animation-delay: -150ms; }
+.loader-line-wrap:nth-child(4) { animation-delay: -200ms; }
+.loader-line-wrap:nth-child(5) { animation-delay: -250ms; }
+
+.loader-line-wrap:nth-child(1) .loader-line {
+    border-color: hsl(0, 80%, 60%);
+    height: 90px;
+    width: 90px;
+    top: 7px;
+}
+.loader-line-wrap:nth-child(2) .loader-line {
+    border-color: hsl(60, 80%, 60%);
+    height: 76px;
+    width: 76px;
+    top: 14px;
+}
+.loader-line-wrap:nth-child(3) .loader-line {
+    border-color: hsl(120, 80%, 60%);
+    height: 62px;
+    width: 62px;
+    top: 21px;
+}
+.loader-line-wrap:nth-child(4) .loader-line {
+    border-color: hsl(180, 80%, 60%);
+    height: 48px;
+    width: 48px;
+    top: 28px;
+}
+.loader-line-wrap:nth-child(5) .loader-line {
+    border-color: hsl(240, 80%, 60%);
+    height: 34px;
+    width: 34px;
+    top: 35px;
+}
+
+@keyframes spin {
+    0%, 15% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.form-button {
+pointer-events: auto; cursor: pointer; border: none; padding: 1.5rem 3rem; margin: 0px; font-family: inherit; position: relative; display: inline-block; text-transform: uppercase; letter-spacing: 0.05rem; font-weight: 700; font-size: 0.85rem; border-radius: 0.5rem; overflow: hidden; color: rgb(255, 255, 255); background: rgb(231, 231, 231);
+}
+
+.form-button::before, .form-button::after {
+position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;
+}
+
+.form-button span {
+position: relative; mix-blend-mode: difference;
+}
+
+.form-button::before {
+content: ""; background: rgb(0, 0, 0); width: 120%; left: -10%; transform: skew(30deg); transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1) 0s;
+}
+
+.form-button:hover::before {
+transform: translate3d(100%, 0px, 0px);
+}
+

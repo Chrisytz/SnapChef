@@ -6,11 +6,24 @@ function ImageUpload() {
    
     const [displayModel, setDisplayModel] = useState(null)
 
+    const [loadingButton, setLoadingButton] = useState(false);
+
+    const handleClick = () => {
+        setLoadingButton(true);
+        
+        // Simulate a loading process, like an API call
+        setTimeout(() => {
+            setLoadingButton(false); // Reset loading state after a delay
+        }, 3000); // Adjust the delay as needed
+      };
+
     function uploadImage() {
+        setLoadingButton(true);
 
         const formData = new FormData(document.getElementById('uploadForm'));
 
         // Make a fetch request to submit the form data
+
         fetch('http://localhost:3000/upload', {
             method: 'POST',
             body: formData
@@ -23,6 +36,10 @@ function ImageUpload() {
             console.log(jsonData)
             setDisplayModel(data.json.images.image);
             console.log(displayModel)
+            
+
+            setLoadingButton(false);
+            
         })
         .catch(error => {
             console.error('Error submitting form:', error);
@@ -31,16 +48,41 @@ function ImageUpload() {
 
     return (
         <div className = "container">
+
+
         <div className = "test-wrapper">
+        {loadingButton && <div class="loader">
+                                <div class="loader-inner">
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                </div>
+                            </div>}
+            
             <h1> Snap it, cook it! </h1>
             <h2> Upload Image </h2>
             <br/>
 
-            <p>
+        
             <center>
             <form id = "uploadForm" encType = "multipart/form-data"> 
-                <input type = "file" name = "image" class = "form-input"/> 
-                <button type = "button" value = "Upload" onClick={uploadImage} class = "form-button"> Test </button>
+                <input type = "file" name = "image" className = "form-input"/> 
+                <button type = "button" value = "Upload" onClick={uploadImage} className={`form-button ${loadingButton ? 'loading' : ''}`}> 
+                <span className="button-text">Submit</span>
+               
+                </button>
              </form>
              </center>
             <div className = "object-list">
@@ -59,7 +101,7 @@ function ImageUpload() {
                     </div>
                 )}
                 </div>
-                </p>
+
            
         </div>
         </div>
