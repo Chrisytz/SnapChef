@@ -14,7 +14,7 @@ export default function WebcamPage(){
         setCamera(!camera)
         
 
-        const url = cameraRef.current ? 'http://localhost:5000/open_feed': 'http://localhost:5000/close_feed';
+        const url = cameraRef.current ? 'http://localhost:8000/open_feed': 'http://localhost:8000/close_feed';
        
         
         if(!cameraRef.current) {
@@ -70,7 +70,7 @@ export default function WebcamPage(){
            
            
 
-            {camera && <img src="http://localhost:5000/video_feed?${new Date().getTime()}" 
+            {camera && <img src="http://localhost:8000/video_feed?${new Date().getTime()}"
                             alt="Video Stream"
                             onError = {handleImageError} />}
 

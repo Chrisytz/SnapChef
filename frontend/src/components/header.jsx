@@ -18,29 +18,14 @@ function Header() {
         <header className='header'>
             <div className='logo'>
                 <Link to='/'> SnapChef </Link>
+
             </div>
-            {user ? (<div>
-                <Link to='/dashboard'> Dashboard </Link>
-            </div>) : (<></>)}
 
             <ul>
                 {user ? (
-                    <li>
-                        <button className='btn' onClick={onLogout}>
-                            <FaSignOutAlt /> Logout
-                        </button>
-                    </li>
-                ) : (
                     <>
                         <li>
-                            <Link to='/login'>
-                                <FaSignInAlt /> Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/register'>
-                                <FaUser /> Register
-                            </Link>
+                            <Link to='/dashboard'> Dashboard </Link>
                         </li>
                         <li>
                             <Link to='/image'>
@@ -55,6 +40,25 @@ function Header() {
                         <li>
                             <Link to='/history'>
                                 History
+                            </Link>
+                        </li>
+                        <li>
+                            <button className='btn' onClick={onLogout}>
+                                <FaSignOutAlt /> Logout
+                            </button>
+                        </li>
+                    </>
+
+                ) : (
+                    <>
+                        <li>
+                            <Link to='/login'>
+                                <FaSignInAlt /> Login
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/register'>
+                                <FaUser /> Register
                             </Link>
                         </li>
                     </>
