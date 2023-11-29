@@ -2,40 +2,45 @@ import React, { useState, useEffect } from "react";
 import OpenAI from "openai";
 import {createGoal} from "../features/goals/goalSlice";
 import {useDispatch} from "react-redux";
+import "../styles/imageUpload.css"
 
 function ImageUpload() {
     const [finishedLoading, setFinishedLoading] = useState(false);
     const [displayModel, setDisplayModel] = useState(null)
     const [recipeObject, setRecipeObject] = useState({})
 
-    const openai = new OpenAI({apiKey: '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', dangerouslyAllowBrowser: true});
-    const dispatch = useDispatch()
+    const [loadingButton, setLoadingButton] = useState(false);
 
-    async function getRecipe(ingredients) {
-        const completion = await openai.chat.completions.create({
-            messages: [
-                { role: "system", content:
-                        "you are a chef who is going to give out simple recipes with ingredients and steps based on a list of ingredients the user will provide in JSON format." +
-                        "Please also add the necessary spices and ingredients, make sure the ones you add are common in households" +
-                        "Here are the specifications of the formatting." +
-                        "The name of the recipe should be a key value pair with the key being \"recipe_name\"" +
-                        "The ingredients of the recipe should be in a nested dictionary with key \"ingredients\" and inside that nested dictionary" +
-                        "each ingredient should have the key be the ingredient name and the value be the quantity/details" +
-                        "finally the steps to prepare the recipe should be in a list with key \"steps\""},
-                { role: "user", content: ingredients}],
-            model: "gpt-3.5-turbo-1106",
-            response_format: { type: "json_object" },
-        });
+    const openai = new OpenAI({apiKey: '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', dangerouslyAllowBrowser: true});
+        const dispatch = useDispatch()
+    
+        async function getRecipe(ingredients) {
+            const completion = await openai.chat.completions.create({
+                messages: [
+                    { role: "system", content:
+                            "you are a chef who is going to give out simple recipes with ingredients and steps based on a list of ingredients the user will provide in JSON format." +
+                            "Please also add the necessary spices and ingredients, make sure the ones you add are common in households" +
+                            "Here are the specifications of the formatting." +
+                            "The name of the recipe should be a key value pair with the key being \"recipe_name\"" +
+                            "The ingredients of the recipe should be in a nested dictionary with key \"ingredients\" and inside that nested dictionary" +
+                            "each ingredient should have the key be the ingredient name and the value be the quantity/details" +
+                            "finally the steps to prepare the recipe should be in a list with key \"steps\""},
+                    { role: "user", content: ingredients}],
+                model: "gpt-3.5-turbo-1106",
+                response_format: { type: "json_object" },
+            });
+    
+            console.log(completion.choices[0].message.content);
+            return completion.choices[0].message.content
+        }
 
-        console.log(completion.choices[0].message.content);
-        return completion.choices[0].message.content
-    }
 
+    
     function uploadImage() {
+        setLoadingButton(true);
+
         setFinishedLoading(false)
         const formData = new FormData(document.getElementById('uploadForm'));
-
-        // Make a fetch request to submit the form data
 
         fetch('http://localhost:3000/upload', {
             method: 'POST',

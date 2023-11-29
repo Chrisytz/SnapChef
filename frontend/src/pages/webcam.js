@@ -70,11 +70,7 @@ export default function WebcamPage(){
            
            
 
-<<<<<<< HEAD
-            {camera && <img src="http://localhost:8000/video_feed?${new Date().getTime()}" 
-=======
             {camera && <img src="http://localhost:8000/video_feed?${new Date().getTime()}"
->>>>>>> ae96d885db14bb5bbab628783a2ed09fa2e2830b
                             alt="Video Stream"
                             onError = {handleImageError} />}
 
