@@ -5,15 +5,11 @@
     overflow: hidden;
     justify-content: center;
     white-space: normal; /* Allows text to wrap */
-    height: 120vh;
+    height: 60vh;
     width: 80vh;
     transition: transform 0.3s ease; /* Smooth transition for transform property */
     place-items: center;
     position: absolute;
-}
-
-.test-wrapper:hover {
-    transform: scale(1.1); /* Increase size by 10% */
 }
 
 .container {

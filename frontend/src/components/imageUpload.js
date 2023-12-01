@@ -3,6 +3,9 @@ import OpenAI from "openai";
 import {createGoal} from "../features/goals/goalSlice";
 import {useDispatch} from "react-redux";
 import "../styles/imageUpload.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 function ImageUpload() {
     const [finishedLoading, setFinishedLoading] = useState(false);
@@ -10,6 +13,15 @@ function ImageUpload() {
     const [recipeObject, setRecipeObject] = useState({})
 
     const [loadingButton, setLoadingButton] = useState(false);
+
+    const [errorMsg, setErrorMsg] = useState("")
+
+    const [done, setDone] = useState(false)
+
+    const statusCodeMessages = {
+        450: "No file submitted",
+        460: "File type not supported, we only support .png and .jpg"
+    }
 
     const openai = new OpenAI({apiKey: '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', dangerouslyAllowBrowser: true});
         const dispatch = useDispatch()
@@ -33,8 +45,6 @@ function ImageUpload() {
             console.log(completion.choices[0].message.content);
             return completion.choices[0].message.content
         }
-
-
     
     function uploadImage() {
         setLoadingButton(true);
@@ -46,13 +56,20 @@ function ImageUpload() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            if(response.status === 450) {
+                throw new Error("450")
+            } else if(response.status === 460) {
+                throw new Error("460")
+            }
+            setErrorMsg("")
+            return response.json()
+        })
         .then(data => {
             // Handle the response as needed
             setDisplayModel(data.json.images.image);
             console.log(displayModel)
             
-
             setLoadingButton(false);
             
             return data
@@ -78,14 +95,24 @@ function ImageUpload() {
         })
         .catch(error => {
             console.error('Error submitting form:', error);
+
+            if(error.message === "450") {
+                setErrorMsg(statusCodeMessages[450]);
+            } else if(error.message === "460") {
+                setErrorMsg(statusCodeMessages[460]);
+            } else {
+                console.log(error);
+            }
+            setLoadingButton(false);
+            setDone(true)
         });        
     }
 
     return (
         <div className = "container">
 
-
         <div className = "test-wrapper">
+        {!done && <div className="submit-form" >
         {loadingButton && <div class="loader">
                                 <div class="loader-inner">
                                     <div class="loader-line-wrap">
@@ -109,7 +136,7 @@ function ImageUpload() {
             <h1> Snap it, cook it! </h1>
             <h2> Upload Image </h2>
             <br/>
-
+            
         
             <center>
             <form id = "uploadForm" encType = "multipart/form-data"> 
@@ -118,9 +145,23 @@ function ImageUpload() {
                 <span className="button-text">Submit</span>
                
                 </button>
-             </form>
-             </center>
+            </form>
+            </center>
+            </div>}
+
+            {done && <div> 
+                <button onClick={() => setDone(false)}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+                
+                
+                </div>}
+
+
+            
             <div className = "object-list">
+                {errorMsg && !done && <div className="error-message">{errorMsg}</div>}
+
                 {finishedLoading && displayModel && (<div className='goals'>
 
                     <h2>{recipeObject["recipe_name"]}</h2>
