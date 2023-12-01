@@ -153,8 +153,6 @@ function ImageUpload() {
                 <button onClick={() => setDone(false)}>
                 <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
-                
-                
                 </div>}
 
 
