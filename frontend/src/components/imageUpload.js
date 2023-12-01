@@ -6,7 +6,6 @@ import "../styles/imageUpload.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-
 function ImageUpload() {
     const [finishedLoading, setFinishedLoading] = useState(false);
     const [displayModel, setDisplayModel] = useState(null)
@@ -16,14 +15,12 @@ function ImageUpload() {
 
     const [errorMsg, setErrorMsg] = useState("")
 
-    const [done, setDone] = useState(false)
-
     const statusCodeMessages = {
         450: "No file submitted",
         460: "File type not supported, we only support .png and .jpg"
     }
 
-    const openai = new OpenAI({apiKey: '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', dangerouslyAllowBrowser: true});
+    const openai = new OpenAI({apiKey: process.env.REACT_APP_GPT_API_KEY, dangerouslyAllowBrowser: true});
         const dispatch = useDispatch()
     
         async function getRecipe(ingredients) {
@@ -70,7 +67,7 @@ function ImageUpload() {
             setDisplayModel(data.json.images.image);
             console.log(displayModel)
             
-            setLoadingButton(false);
+            
             
             return data
         })
@@ -91,6 +88,7 @@ function ImageUpload() {
             }))
         })
         .then(() => {
+            setLoadingButton(false);
             setFinishedLoading(true)
         })
         .catch(error => {
@@ -104,7 +102,7 @@ function ImageUpload() {
                 console.log(error);
             }
             setLoadingButton(false);
-            setDone(true)
+            setFinishedLoading(false);
         });        
     }
 
@@ -112,7 +110,7 @@ function ImageUpload() {
         <div className = "container">
 
         <div className = "test-wrapper">
-        {!done && <div className="submit-form" >
+        {!finishedLoading && <div className="submit-form" >
         {loadingButton && <div class="loader">
                                 <div class="loader-inner">
                                     <div class="loader-line-wrap">
@@ -149,8 +147,8 @@ function ImageUpload() {
             </center>
             </div>}
 
-            {done && <div> 
-                <button onClick={() => setDone(false)}>
+            {finishedLoading && <div> 
+                <button onClick={() => setFinishedLoading(false)}>
                 <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
                 </div>}
@@ -158,9 +156,9 @@ function ImageUpload() {
 
             
             <div className = "object-list">
-                {errorMsg && !done && <div className="error-message">{errorMsg}</div>}
+                {!finishedLoading && <div className="error-message">{errorMsg}</div>}
 
-                {finishedLoading && displayModel && (<div className='goals'>
+                {finishedLoading && (<div className='goals'>
 
                     <h2>{recipeObject["recipe_name"]}</h2>
                     <h3> Ingredients </h3>
@@ -177,7 +175,7 @@ function ImageUpload() {
                     ))}</p>
                 </div>)}
 
-                {finishedLoading && displayModel && (
+                {finishedLoading && (
                     <div>
                     <h2>Image Preview:</h2>
                     <center><img src={displayModel} alt="Preview" /> </center>
