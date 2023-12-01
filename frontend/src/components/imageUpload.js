@@ -3,6 +3,8 @@ import OpenAI from "openai";
 import {createGoal} from "../features/goals/goalSlice";
 import {useDispatch} from "react-redux";
 import "../styles/imageUpload.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function ImageUpload() {
     const [finishedLoading, setFinishedLoading] = useState(false);
@@ -11,7 +13,14 @@ function ImageUpload() {
 
     const [loadingButton, setLoadingButton] = useState(false);
 
-    const openai = new OpenAI({apiKey: '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', dangerouslyAllowBrowser: true});
+    const [errorMsg, setErrorMsg] = useState("")
+
+    const statusCodeMessages = {
+        450: "No file submitted",
+        460: "File type not supported, we only support .png and .jpg"
+    }
+
+    const openai = new OpenAI({apiKey: process.env.REACT_APP_GPT_API_KEY, dangerouslyAllowBrowser: true});
         const dispatch = useDispatch()
     
         async function getRecipe(ingredients) {
@@ -33,8 +42,6 @@ function ImageUpload() {
             console.log(completion.choices[0].message.content);
             return completion.choices[0].message.content
         }
-
-
     
     function uploadImage() {
         setLoadingButton(true);
@@ -46,14 +53,21 @@ function ImageUpload() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            if(response.status === 450) {
+                throw new Error("450")
+            } else if(response.status === 460) {
+                throw new Error("460")
+            }
+            setErrorMsg("")
+            return response.json()
+        })
         .then(data => {
             // Handle the response as needed
             setDisplayModel(data.json.images.image);
             console.log(displayModel)
             
-
-            setLoadingButton(false);
+            
             
             return data
         })
@@ -74,18 +88,29 @@ function ImageUpload() {
             }))
         })
         .then(() => {
+            setLoadingButton(false);
             setFinishedLoading(true)
         })
         .catch(error => {
             console.error('Error submitting form:', error);
+
+            if(error.message === "450") {
+                setErrorMsg(statusCodeMessages[450]);
+            } else if(error.message === "460") {
+                setErrorMsg(statusCodeMessages[460]);
+            } else {
+                console.log(error);
+            }
+            setLoadingButton(false);
+            setFinishedLoading(false);
         });        
     }
 
     return (
         <div className = "container">
 
-
         <div className = "test-wrapper">
+        {!finishedLoading && <div className="submit-form" >
         {loadingButton && <div class="loader">
                                 <div class="loader-inner">
                                     <div class="loader-line-wrap">
@@ -109,7 +134,7 @@ function ImageUpload() {
             <h1> Snap it, cook it! </h1>
             <h2> Upload Image </h2>
             <br/>
-
+            
         
             <center>
             <form id = "uploadForm" encType = "multipart/form-data"> 
@@ -118,10 +143,22 @@ function ImageUpload() {
                 <span className="button-text">Submit</span>
                
                 </button>
-             </form>
-             </center>
+            </form>
+            </center>
+            </div>}
+
+            {finishedLoading && <div> 
+                <button onClick={() => setFinishedLoading(false)}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+                </div>}
+
+
+            
             <div className = "object-list">
-                {finishedLoading && displayModel && (<div className='goals'>
+                {!finishedLoading && <div className="error-message">{errorMsg}</div>}
+
+                {finishedLoading && (<div className='goals'>
 
                     <h2>{recipeObject["recipe_name"]}</h2>
                     <h3> Ingredients </h3>
@@ -138,7 +175,7 @@ function ImageUpload() {
                     ))}</p>
                 </div>)}
 
-                {finishedLoading && displayModel && (
+                {finishedLoading && (
                     <div>
                     <h2>Image Preview:</h2>
                     <center><img src={displayModel} alt="Preview" /> </center>
