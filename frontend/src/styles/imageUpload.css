@@ -6,10 +6,30 @@
     justify-content: center;
     white-space: normal; /* Allows text to wrap */
     height: 70vh;
-    width: 90vh;
+    width: 70vh;
     transition: transform 0.3s ease; /* Smooth transition for transform property */
     place-items: center;
     position: absolute;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(
+        to bottom,
+        lightblue 30%,
+        white 30%
+    )
+}
+
+.image-upload {
+    display: inline-block;
+    margin-top: 10%;
+}
+
+.up-header {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: 
+    translateX(-50%);
 }
 
 .container {
@@ -81,7 +101,10 @@ input[type="file"] {
     
   }
 
-  .form-input, .form-button {
+  .form-input {
+    display: none;
+  }
+  .form-button {
     display: block;
     margin-bottom: 10px;
     justify-content: center;
@@ -206,3 +229,113 @@ content: ""; background: rgb(0, 0, 0); width: 120%; left: -10%; transform: skew(
 transform: translate3d(100%, 0px, 0px);
 }
 
+.back-button {
+    height: 10vh;
+    box-shadow: none;
+}
+
+.arrow {
+    color: #000; /* Initial color of the arrow */
+    margin-right: 5px;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .back-button:hover .arrow {
+    transform: scale(1.5); /* Arrow grows in size */
+    color: blue;
+  }
+
+  .wrapper {
+    margin: auto;
+    max-width: 640px;
+    padding-top: 60px;
+    text-align: center;
+  }
+  
+  .upload-container {
+    background-color: rgb(239, 239, 239);
+    border-radius: 6px;
+    padding: 10px;
+  }
+  
+  .border-container {
+    border: 5px dashed rgba(198, 198, 198, 0.65);
+  /*   border-radius: 4px; */
+    padding: 20px;
+  }
+  
+  .border-container p {
+    color: #130f40;
+    font-weight: 600;
+    font-size: 1.1em;
+    letter-spacing: -1px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    opacity: 0.65;
+  }
+  
+  #file-browser {
+    text-decoration: none;
+    color: rgb(22,42,255);
+    border-bottom: 3px dotted rgba(22, 22, 255, 0.85);
+  }
+  
+  #file-browser:hover {
+    color: rgb(0, 0, 255);
+    border-bottom: 3px dotted rgba(0, 0, 255, 0.85);
+  }
+  
+  .icons {
+    color: #95afc0;
+    opacity: 0.55;
+  }
+
+  .container2 {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    /*border: 0.5px solid rgba(130, 130, 130, 0.25);*/
+    /*box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 
+                0 0 0 1px rgba(0, 0, 0, 0.1);*/
+  }
+  
+.wrapper {
+    padding: 1.5rem 0;
+    filter: url('#goo');
+}
+
+.btn {
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #91C9FF;
+    outline: none;
+    transition: 1s ease-in-out;
+  }
+  
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 150 480;
+    stroke-dashoffset: 150;
+    transition: 1s ease-in-out;
+  }
+  
+  .btn:hover {
+    transition: 1s ease-in-out;
+    background: #4F95DA;
+  }
+  
+  .btn:hover svg {
+    stroke-dashoffset: -480;
+  }
+  
+  .btn span {
+    color: white;
+    font-size: 18px;
+    font-weight: 100;
+  }

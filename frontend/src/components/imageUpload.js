@@ -4,12 +4,13 @@ import {createGoal} from "../features/goals/goalSlice";
 import {useDispatch} from "react-redux";
 import "../styles/imageUpload.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
+import { faUpload} from '@fortawesome/free-solid-svg-icons';
 function ImageUpload() {
     const [finishedLoading, setFinishedLoading] = useState(false);
     const [displayModel, setDisplayModel] = useState(null)
     const [recipeObject, setRecipeObject] = useState({})
+    const fileInputRef = React.useRef(null);
 
     const [loadingButton, setLoadingButton] = useState(false);
 
@@ -111,34 +112,60 @@ function ImageUpload() {
 
         <div className = "test-wrapper">
         {!finishedLoading && <div className="submit-form" >
-        {loadingButton && <div class="loader">
-                                <div class="loader-inner">
-                                    <div class="loader-line-wrap">
-                                        <div class="loader-line"></div>
+        {loadingButton && <div className="loader">
+                                <div className="loader-inner">
+                                    <div className="loader-line-wrap">
+                                        <div className="loader-line"></div>
                                     </div>
-                                    <div class="loader-line-wrap">
-                                        <div class="loader-line"></div>
+                                    <div className="loader-line-wrap">
+                                        <div className="loader-line"></div>
                                     </div>
-                                    <div class="loader-line-wrap">
-                                        <div class="loader-line"></div>
+                                    <div className="loader-line-wrap">
+                                        <div className="loader-line"></div>
                                     </div>
-                                    <div class="loader-line-wrap">
-                                        <div class="loader-line"></div>
+                                    <div className="loader-line-wrap">
+                                        <div className="loader-line"></div>
                                     </div>
-                                    <div class="loader-line-wrap">
-                                        <div class="loader-line"></div>
+                                    <div className="loader-line-wrap">
+                                        <div className="loader-line"></div>
                                     </div>
                                 </div>
                             </div>}
             
-            <h1> Snap it, cook it! </h1>
-            <h2> Upload Image </h2>
+            <h1 className="up-header"> Snap it, cook it! </h1>
+            <text className="image-upload"> Upload an image of your ingredients to see what food you can make! </text>
             <br/>
             
         
             <center>
             <form id = "uploadForm" encType = "multipart/form-data"> 
-                <input type = "file" name = "image" className = "form-input"/> 
+            <div className="wrapper">
+            <div className="container2">
+                <h1>Upload a file</h1>
+                <div className="upload-container">
+                <div className="border-container">
+                    <div className="icons fa-4x">
+                    <h1 class="imgupload"><i class="fa fa-file-image-o"></i></h1>
+                    </div>
+                    <p> Drag and drop files here! </p>
+                    <button 
+                        type="button" 
+                        className="button3"
+                        onClick={() => fileInputRef.current && fileInputRef.current.click()}
+                    >
+
+                        <span className="button-text"> <FontAwesomeIcon icon={faUpload} />   Upload Image</span>
+                    </button>
+
+
+                <input type = "file" ref={fileInputRef} name = "image" className = "form-input"/> 
+                </div>
+                </div>
+            </div>
+            </div>
+                
+               
+                
                 <button type = "button" value = "Upload" onClick={uploadImage} className={`form-button ${loadingButton ? 'loading' : ''}`}> 
                 <span className="button-text">Submit</span>
                
@@ -148,11 +175,10 @@ function ImageUpload() {
             </div>}
 
             {finishedLoading && <div> 
-                <button onClick={() => setFinishedLoading(false)}>
-                <FontAwesomeIcon icon={faArrowLeft} />
+                <button onClick={() => setFinishedLoading(false)} >
+                <span className="arrow">&#8592;</span> Back
                 </button>
                 </div>}
-
 
             
             <div className = "object-list">
