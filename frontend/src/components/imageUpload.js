@@ -150,11 +150,12 @@ function ImageUpload() {
                     <p> Drag and drop files here! </p>
                     <button 
                         type="button" 
-                        className="button3"
+                        className="water-btn"
                         onClick={() => fileInputRef.current && fileInputRef.current.click()}
                     >
 
-                        <span className="button-text"> <FontAwesomeIcon icon={faUpload} />   Upload Image</span>
+                        <FontAwesomeIcon icon={faUpload} />   Upload Image
+                        <div className = "liquid"></div>
                     </button>
 
 
