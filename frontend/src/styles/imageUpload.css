@@ -5,7 +5,7 @@
     overflow: auto;
     justify-content: center;
     white-space: normal; /* Allows text to wrap */
-    height: 70vh;
+    height: 75vh;
     width: 70vh;
     transition: transform 0.3s ease; /* Smooth transition for transform property */
     place-items: center;
@@ -21,7 +21,7 @@
 
 .image-upload {
     display: inline-block;
-    margin-top: 10%;
+    margin-top: 18%;
 }
 
 .up-header {
@@ -254,14 +254,28 @@ transform: translate3d(100%, 0px, 0px);
   
   .upload-container {
     background-color: rgb(239, 239, 239);
-    border-radius: 6px;
+    border-radius: 15px;
     padding: 10px;
+    
+    justify-content: center;
+    align-items: center;
+    display: flex;
+   
   }
   
   .border-container {
     border: 5px dashed rgba(198, 198, 198, 0.65);
-  /*   border-radius: 4px; */
-    padding: 20px;
+       
+    padding: 10%;
+    width: 80%;
+    
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto; /* or any specific size */
+    display: flex;
   }
   
   .border-container p {
@@ -272,6 +286,7 @@ transform: translate3d(100%, 0px, 0px);
     margin-top: 30px;
     margin-bottom: 0;
     opacity: 0.65;
+    width: 80%;
   }
   
   #file-browser {
@@ -297,12 +312,16 @@ transform: translate3d(100%, 0px, 0px);
     /*border: 0.5px solid rgba(130, 130, 130, 0.25);*/
     /*box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 
                 0 0 0 1px rgba(0, 0, 0, 0.1);*/
+    
+    justify-content: center;
+    align-items: center;
   }
   
-  .water-btn{
-    position: relative;
+  .water-btn {
+    margin-top: 30%;
+    position: absolute;
     padding: 20px 50px;
-    display: block;
+    display: flex;
     text-decoration: none;
     text-transform: uppercase;
     width: 200px;
@@ -313,10 +332,11 @@ transform: translate3d(100%, 0px, 0px);
   .water-btn span {
     position: relative;
     color: #fff;
-    fot-size: 20px;
-    font-family: Arial;
-    letter-spacing: 8px;
+    font-size: 20px;
+    
+    
     z-index: 1;
+    display: inline-block;
   }
   
   .water-btn .liquid {
@@ -367,4 +387,13 @@ transform: translate3d(100%, 0px, 0px);
     100% {
       transform: translate(-50%, -75%) rotate(360deg);
     }
+  }
+  .water-text {
+    color: white;
+    font-size: 18px;
+    display: inline;
+  }
+
+  .fa-upload {
+    vertical-align: middle;
   }

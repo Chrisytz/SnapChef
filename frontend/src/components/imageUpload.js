@@ -16,7 +16,10 @@ function ImageUpload() {
 
     const [errorMsg, setErrorMsg] = useState("")
 
+    const [filename, setFilename] = useState("")
+
     const statusCodeMessages = {
+        420: "No ingredients found",
         450: "No file submitted",
         460: "File type not supported, we only support .png and .jpg"
     }
@@ -68,7 +71,10 @@ function ImageUpload() {
             setDisplayModel(data.json.images.image);
             console.log(displayModel)
             
-            
+            if(Object.keys(data.json.objects).length === 0) {
+                console.log("Error 420");
+                throw new Error("420");
+            }
             
             return data
         })
@@ -99,13 +105,24 @@ function ImageUpload() {
                 setErrorMsg(statusCodeMessages[450]);
             } else if(error.message === "460") {
                 setErrorMsg(statusCodeMessages[460]);
+            } else if(error.message === "420") {
+                console.log("set")
+                setErrorMsg(statusCodeMessages[420]);
             } else {
                 console.log(error);
             }
             setLoadingButton(false);
             setFinishedLoading(false);
+            setFilename("");
         });        
     }
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          setFilename(file.name);
+        }
+      };
 
     return (
         <div className = "container">
@@ -132,7 +149,7 @@ function ImageUpload() {
                                 </div>
                             </div>}
             
-            <h1 className="up-header"> Snap it, cook it! </h1>
+            <h1 className="up-header">  Snap it, cook it! </h1>
             <text className="image-upload"> Upload an image of your ingredients to see what food you can make! </text>
             <br/>
             
@@ -147,26 +164,22 @@ function ImageUpload() {
                     <div className="icons fa-4x">
                     <h1 class="imgupload"><i class="fa fa-file-image-o"></i></h1>
                     </div>
-                    <p> Drag and drop files here! </p>
-                    <button 
-                        type="button" 
-                        className="water-btn"
-                        onClick={() => fileInputRef.current && fileInputRef.current.click()}
-                    >
-
-                        <FontAwesomeIcon icon={faUpload} />   Upload Image
-                        <div className = "liquid"></div>
-                    </button>
+                   {!filename && <p> Drag and drop files here! </p>}
+                   {filename && <p> {filename} </p>}
 
 
-                <input type = "file" ref={fileInputRef} name = "image" className = "form-input"/> 
+                    <a  className = "water-btn" href = "#" onClick={() => fileInputRef.current && fileInputRef.current.click()}>
+                    <span> <FontAwesomeIcon icon = {faUpload} /> <h1 className="water-text"> Upload </h1> </span>
+                    <div class="liquid"></div>
+                    </a>
+            
+
+                <input type = "file" ref={fileInputRef} onChange = {handleFileChange} name = "image" className = "form-input"/> 
                 </div>
                 </div>
             </div>
             </div>
-                
-               
-                
+                {!finishedLoading && <div className="error-message">{errorMsg}</div>}
                 <button type = "button" value = "Upload" onClick={uploadImage} className={`form-button ${loadingButton ? 'loading' : ''}`}> 
                 <span className="button-text">Submit</span>
                
@@ -176,14 +189,14 @@ function ImageUpload() {
             </div>}
 
             {finishedLoading && <div> 
-                <button onClick={() => setFinishedLoading(false)} >
+                <button onClick={(event) => {setFinishedLoading(false); setFilename("")}} >
                 <span className="arrow">&#8592;</span> Back
                 </button>
                 </div>}
 
             
             <div className = "object-list">
-                {!finishedLoading && <div className="error-message">{errorMsg}</div>}
+               
 
                 {finishedLoading && (<div className='goals'>
 
