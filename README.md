@@ -29,10 +29,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Chrisytz/SnapChef">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
 <h3 align="center">SnapChef</h3>
 
   <p align="center">
@@ -84,7 +80,17 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `Chrisytz`, `SnapChef`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `SnapChef`, `project_description`
+The project has not been deployed yet and is still in development, it will be deployed on AWS or Heroku. Here is a quick overview of what is coming up:
+
+SnapChef allows users to take realtime video of ingredients or can also upload images to our website. The site will then generate a recipe via ChatGPT instructing users what they can make with their ingredients. Consumers can preview their history if they want to access previous requests.
+
+Users can sign in via the login page using email and password:
+
+After signing in, you can upload an image or open your webcam to do food object detection.
+<img width="771" alt="Screen Shot 2023-12-02 at 1 55 52 PM" src="https://github.com/Chrisytz/SnapChef/assets/52054778/6828e07f-0b42-4c08-be5e-a1a902d32ac5">
+
+https://github.com/Chrisytz/SnapChef/assets/52054778/5fcfc68d-ef09-4c28-b938-a68ce472b180
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
