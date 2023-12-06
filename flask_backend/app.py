@@ -16,8 +16,6 @@ lock = threading.Lock()
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 
-cap = cv2.VideoCapture(0)
-
 classNames = ["carrot","egg","onion","chicken","pork",
     "steak",
     "red cabbage",
@@ -63,6 +61,7 @@ camera_active = False
 def gen_frames():
     global cap, camera_active  # Declare cap as global at the start of the function
     camera_active = True
+    cap = cv2.VideoCapture(0)
     if not cap.isOpened():
         cap = cv2.VideoCapture(0)
     
@@ -126,9 +125,17 @@ def close():
     global objects
     
     dic = objects.copy()
+
+    non_exist = []
+    for i in dic: 
+        if dic[i] == 0: non_exist.append(i)  
+    
+    for i in non_exist: del dic[i]
+    
     objects = {i:0 for i in classNames}
     cap.release()
-    
+   
+
     return jsonify(dic)
 
 @app.route('/open_feed')
@@ -150,4 +157,8 @@ def hello():
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
+    app.run(port=8000, debug=True, host='0.0.0.0')
+=======
     app.run(debug=True, host='0.0.0.0', port=8000)
+>>>>>>> ae96d885db14bb5bbab628783a2ed09fa2e2830b

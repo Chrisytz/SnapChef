@@ -34,12 +34,25 @@ router.post("/upload", upload.single('image'), (req, res) => {
     console.log("RUNNING");
     const scriptFilename = path.join(__dirname, '../model_train', 'image_run.py');
     const exec_command = spawn('python3', [scriptFilename])
+    
+    let dataStr = ""
 
     exec_command.stdout.on('data', function (data) {
         console.log('Pipe data from python script ...');
         dataStr = data.toString();
-        console.log(dataStr)
+        console.log("test", dataStr)
+        
+        if (dataStr.includes("450")) {
+            res.status(450).send({message: "The message was not received"});
+            return;
+        } else if(dataStr.includes("460")) {
+            res.status(460).send({message: "File type not supported, our model can only use .png and .jpg files."})
+            storeImage(4);
+            return;
+        }
     });
+
+    
     
     exec_command.stderr.on('data', (data) => {
         console.error(`stderr: ${data.toString()}`);
@@ -48,11 +61,11 @@ router.post("/upload", upload.single('image'), (req, res) => {
     exec_command.on('close', (code) => {
         console.log(`Python script exited with code ${code}`);
       
-        storeImage();
+        storeImage(code);
         
     });
 
-    async function storeImage() {
+    async function storeImage(code) {
         directoryPath = "runs/detect/predict"
         try {
             var files = fs.readdirSync(directoryPath).filter(fn => fn.startsWith('model'));
@@ -65,6 +78,10 @@ router.post("/upload", upload.single('image'), (req, res) => {
                 }
                 console.log(`File '${files[0]}' was deleted successfully.`);
             });
+            
+            if(code == 4) {
+                return
+            }
 
             const file = "runs/detect/predict/" + files[0]
            
@@ -98,7 +115,7 @@ router.post("/upload", upload.single('image'), (req, res) => {
             json.objects = jsonData
             json.images = {image: img}
             json.id = createdImage.id
-            res.json({json});
+            res.status(200).json({json});
         } catch (err) {
             res.status(500).json({ error: "Error parsing JSON file", message: err.message });
         }
@@ -116,32 +133,6 @@ router.post("/upload", upload.single('image'), (req, res) => {
             }
         });
 
-    }
-
-    function deleteModelImage() {
-        const directoryPath = path.join(__dirname, 'backend/model_train');
-
-
-        fs.readdir(directoryPath, (err, files) => {
-            if (err) {
-                console.error('Error reading the directory', err);
-                return;
-            }
-            // Filter files that start with 'model'
-            const filesToDelete = files.filter(file => file.startsWith('model'));
-
-            // Delete each file
-            filesToDelete.forEach(file => {
-                const filePath = path.join(directoryPath, file);
-                fs.unlink(filePath, (err) => {
-                    if (err) {
-                        console.error(`Error deleting file ${file}`, err);
-                    } else {
-                        console.log(`Successfully deleted file ${file}`);
-                    }
-                });
-            });
-        });
     }
 
 })  

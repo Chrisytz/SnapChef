@@ -53,12 +53,24 @@ categories = {
 def main():
     directory = ""
     pattern = os.path.join(directory, 'backend/model_train/model*')
-    print(pattern)
+
     match_file = glob.glob(pattern)
     
     try:
+        if len(match_file) == 0: 
+            print("450")
+            return 
+        else:
+            print(match_file)
+            if not match_file[0].lower().endswith(('.jpg', '.jpeg', 'png')):
+                print("460")
+                os.remove(match_file[0])
+                return
+                
         file_path =  match_file[0]
         print("yo", file_path)
+        
+        
         model = YOLO("backend/model_train/best.pt")  # load a pretrained model (recommended for training)
         results = model(file_path, save = True, save_txt = True)  # predict on an image
         

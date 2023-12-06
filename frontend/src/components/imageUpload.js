@@ -2,49 +2,74 @@ import React, { useState, useEffect } from "react";
 import OpenAI from "openai";
 import {createGoal} from "../features/goals/goalSlice";
 import {useDispatch} from "react-redux";
+import "../styles/imageUpload.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function ImageUpload() {
     const [finishedLoading, setFinishedLoading] = useState(false);
     const [displayModel, setDisplayModel] = useState(null)
     const [recipeObject, setRecipeObject] = useState({})
 
-    const openai = new OpenAI({apiKey: process.env.REACT_APP_GPT_API_KEY, dangerouslyAllowBrowser: true});
-    const dispatch = useDispatch()
+    const [loadingButton, setLoadingButton] = useState(false);
 
-    async function getRecipe(ingredients) {
-        const completion = await openai.chat.completions.create({
-            messages: [
-                { role: "system", content:
-                        "you are a chef who is going to give out simple recipes with ingredients and steps based on a list of ingredients the user will provide in JSON format." +
-                        "Please also add the necessary spices and ingredients, make sure the ones you add are common in households" +
-                        "Here are the specifications of the formatting." +
-                        "The name of the recipe should be a key value pair with the key being \"recipe_name\"" +
-                        "The ingredients of the recipe should be in a nested dictionary with key \"ingredients\" and inside that nested dictionary" +
-                        "each ingredient should have the key be the ingredient name and the value be the quantity/details" +
-                        "finally the steps to prepare the recipe should be in a list with key \"steps\""},
-                { role: "user", content: ingredients}],
-            model: "gpt-3.5-turbo-1106",
-            response_format: { type: "json_object" },
-        });
+    const [errorMsg, setErrorMsg] = useState("")
 
-        console.log(completion.choices[0].message.content);
-        return completion.choices[0].message.content
+    const statusCodeMessages = {
+        450: "No file submitted",
+        460: "File type not supported, we only support .png and .jpg"
     }
 
+    const openai = new OpenAI({apiKey: process.env.REACT_APP_GPT_API_KEY, dangerouslyAllowBrowser: true});
+        const dispatch = useDispatch()
+    
+        async function getRecipe(ingredients) {
+            const completion = await openai.chat.completions.create({
+                messages: [
+                    { role: "system", content:
+                            "you are a chef who is going to give out simple recipes with ingredients and steps based on a list of ingredients the user will provide in JSON format." +
+                            "Please also add the necessary spices and ingredients, make sure the ones you add are common in households" +
+                            "Here are the specifications of the formatting." +
+                            "The name of the recipe should be a key value pair with the key being \"recipe_name\"" +
+                            "The ingredients of the recipe should be in a nested dictionary with key \"ingredients\" and inside that nested dictionary" +
+                            "each ingredient should have the key be the ingredient name and the value be the quantity/details" +
+                            "finally the steps to prepare the recipe should be in a list with key \"steps\""},
+                    { role: "user", content: ingredients}],
+                model: "gpt-3.5-turbo-1106",
+                response_format: { type: "json_object" },
+            });
+    
+            console.log(completion.choices[0].message.content);
+            return completion.choices[0].message.content
+        }
+    
     function uploadImage() {
+        setLoadingButton(true);
+
         setFinishedLoading(false)
         const formData = new FormData(document.getElementById('uploadForm'));
 
-        // Make a fetch request to submit the form data
         fetch('http://localhost:3000/upload', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            if(response.status === 450) {
+                throw new Error("450")
+            } else if(response.status === 460) {
+                throw new Error("460")
+            }
+            setErrorMsg("")
+            return response.json()
+        })
         .then(data => {
             // Handle the response as needed
             console.log(data.json.id)
             setDisplayModel(data.json.images.image);
+            console.log(displayModel)
+            
+            
+            
             return data
         })
         .then(data => {
@@ -65,23 +90,78 @@ function ImageUpload() {
             }))
         })
         .then(() => {
+            setLoadingButton(false);
             setFinishedLoading(true)
         })
         .catch(error => {
             console.error('Error submitting form:', error);
+
+            if(error.message === "450") {
+                setErrorMsg(statusCodeMessages[450]);
+            } else if(error.message === "460") {
+                setErrorMsg(statusCodeMessages[460]);
+            } else {
+                console.log(error);
+            }
+            setLoadingButton(false);
+            setFinishedLoading(false);
         });        
     }
 
     return (
+        <div className = "container">
+
         <div className = "test-wrapper">
-            <h1> Upload Image </h1>
+        {!finishedLoading && <div className="submit-form" >
+        {loadingButton && <div class="loader">
+                                <div class="loader-inner">
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                    <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                                    </div>
+                                </div>
+                            </div>}
+            
+            <h1> Snap it, cook it! </h1>
+            <h2> Upload Image </h2>
+            <br/>
+            
+        
+            <center>
             <form id = "uploadForm" encType = "multipart/form-data"> 
-                <input type = "file" name = "image" />
-                <input type = "button" value = "Upload" onClick={uploadImage}/>
-             </form>
+                <input type = "file" name = "image" className = "form-input"/> 
+                <button type = "button" value = "Upload" onClick={uploadImage} className={`form-button ${loadingButton ? 'loading' : ''}`}> 
+                <span className="button-text">Submit</span>
+               
+                </button>
+            </form>
+            </center>
+            </div>}
+
+            {finishedLoading && <div> 
+                <button onClick={() => setFinishedLoading(false)}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+                </div>}
+
+
             
             <div className = "object-list">
-                {finishedLoading && displayModel && (<div className='goals'>
+                {!finishedLoading && <div className="error-message">{errorMsg}</div>}
+
+                {finishedLoading && (<div className='goals'>
+
                     <h2>{recipeObject["recipe_name"]}</h2>
                     <h3> Ingredients </h3>
                     <ul>
@@ -97,13 +177,16 @@ function ImageUpload() {
                     ))}</div>
                 </div>)}
 
-                {finishedLoading && displayModel && (
+                {finishedLoading && (
                     <div>
                     <h2>Image Preview:</h2>
-                    <img src={displayModel} alt="Preview" />
+                    <center><img src={displayModel} alt="Preview" /> </center>
                     </div>
                 )}
                 </div>
+
+           
+        </div>
         </div>
     )
 }
