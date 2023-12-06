@@ -9,7 +9,7 @@ const ImageGallery = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/getPreviewModel?page=${currentPage}`);
+        const response = await axios.get(`http://localhost:4000/getPreviewModel?page=${currentPage}`);
         setImages(response.data.docs);
         setTotalPages(response.data.totalPages);
       } catch (error) {

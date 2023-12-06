@@ -28,28 +28,76 @@ li {
   line-height: 2.2;
 }
 
-h1,
-h2,
-h3 {
-  font-weight: 600;
-  margin-bottom: 10px;
+h1 {
+  font-size: 50px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-weight: 200;
+  font-size: 20px;
+
+}
+
+.welcome-text {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  padding-top: 120px;
+}
+
+.login-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 1000px;
+  width: 80%;
+  margin: 100px auto;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-image {
+  background-color: lightskyblue;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  width: 55%;
+}
+
+.login-form {
+  width: 45%;
+  padding: 80px 30px;
+  padding-bottom: 250px;
+}
+
+.login-form-header {
+  padding-bottom: 40px;
+  text-align: left;
 }
 
 .container {
   width: 100%;
-  max-width: 960px;
   margin: 0 auto;
-  padding: 0 20px;
   text-align: center;
+  background-color: #e6e6e6;
 }
 
 .header {
+  /*border-bottom: 1px solid #e6e6e6;*/
+  margin-bottom: 60px;
+  padding: 0 20px;
+  background-color: white;
+}
+
+.header-contents {
   display: flex;
+  max-width: 1100px;
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 60px;
+  margin: 0 auto;
 }
 
 .header ul {
@@ -87,16 +135,60 @@ h3 {
 }
 
 .goals {
+  align-items: normal;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 10px;
 }
 
+.goal-container {
+  align-items: stretch;
+  position: relative;
+}
+
+.goal-content {
+  background-color: rgba(255, 255, 255, 0.7); /* Adjust the background color and opacity as needed */
+  z-index: 0;
+  background-color: #f4f4f4;
+  margin: 40px 5px;
+  padding: 220px 10% 10px;
+  height: 350px;
+  text-align: left;
+  border-radius: 7px;
+  align-self: end;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.overlapping-image {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 220px;
+  width: 80%;
+  object-fit: cover;
+  border-radius: 7px;
+  z-index: 1;
+}
+
+.goal-recipe-name {
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.goal-given-ingredients {
+  color: gray;
+  padding-bottom: 15px;
+}
+
+
 .goal {
   background-color: #f4f4f4;
-  margin: 10px 0;
-  padding: 20px 0 10px;
+  margin: 10px 5px;
+  padding: 20px 20px 10px;
   position: relative;
+  text-align: left;
+  border-radius: 5px;
 }
 
 .goal .close {
@@ -110,7 +202,7 @@ h3 {
 
 .form,
 .content {
-  width: 70%;
+  width: 65%;
   margin: 0 auto;
 }
 
@@ -136,21 +228,44 @@ h3 {
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 15px 30px;
   border: 1px solid #000;
-  border-radius: 5px;
+  border-radius: 3px;
   background: #000;
   color: #fff;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 300;
   cursor: pointer;
   text-align: center;
-  appearance: button;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 
+.recipe-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.recipe-modal {
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh; /* 80% of viewport height */
+  overflow: auto; /* Enable scrolling if content exceeds the max height */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 .btn svg {
   margin-right: 8px;
 }

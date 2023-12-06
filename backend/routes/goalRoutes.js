@@ -8,7 +8,7 @@ const {
     setGoal,
     deleteGoal,
     updateGoal
-} = require('../controllers/goalController')
+} = require('../controllers/recipeController')
 
 const {protect} = require('../middleware/authMiddleware')
 

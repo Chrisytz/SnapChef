@@ -8,7 +8,7 @@ function ImageUpload() {
     const [displayModel, setDisplayModel] = useState(null)
     const [recipeObject, setRecipeObject] = useState({})
 
-    const openai = new OpenAI({apiKey: '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', dangerouslyAllowBrowser: true});
+    const openai = new OpenAI({apiKey: process.env.REACT_APP_GPT_API_KEY, dangerouslyAllowBrowser: true});
     const dispatch = useDispatch()
 
     async function getRecipe(ingredients) {
@@ -43,23 +43,25 @@ function ImageUpload() {
         .then(response => response.json())
         .then(data => {
             // Handle the response as needed
+            console.log(data.json.id)
             setDisplayModel(data.json.images.image);
             return data
         })
         .then(data => {
             const ingredients = Object.keys(data.json.objects).join(',')
-            return getRecipe(ingredients)
+            return Promise.all([data.json.id, getRecipe(ingredients)])
         })
-        .then((recipeString) => {
+        .then(([id, recipeString]) => {
             const recipe = JSON.parse(recipeString)
             setRecipeObject(recipe)
 
             // we need to have a text: recipe field since in our post request for createGoal we have a required text field
-            // that is defined in goalModel.js
+            // that is defined in recipeModel.js
             dispatch(createGoal({
                 recipe_name: recipe['recipe_name'],
                 ingredients: JSON.stringify(recipe['ingredients']),
-                steps: recipe['steps']
+                steps: recipe['steps'],
+                image_id: id
             }))
         })
         .then(() => {
@@ -80,7 +82,6 @@ function ImageUpload() {
             
             <div className = "object-list">
                 {finishedLoading && displayModel && (<div className='goals'>
-
                     <h2>{recipeObject["recipe_name"]}</h2>
                     <h3> Ingredients </h3>
                     <ul>
@@ -91,9 +92,9 @@ function ImageUpload() {
                         ))}
                     </ul>
                     <h3> Steps </h3>
-                    <p>{recipeObject["steps"].map((ingredient, index) => (
+                    <div>{recipeObject["steps"].map((ingredient, index) => (
                         <div key={index}>{ingredient}</div>
-                    ))}</p>
+                    ))}</div>
                 </div>)}
 
                 {finishedLoading && displayModel && (

@@ -9,6 +9,7 @@ import Header from './components/header'
 import ImageClient from './pages/imageClient'
 import History from './pages/history'
 import WebcamPage from './pages/webcam'
+import Recipes from './pages/Recipes'
 function App() {
     return (
         <>
@@ -23,6 +24,7 @@ function App() {
                         <Route path='/history' element={<History/>}></Route>
                         <Route path='/image' element={<ImageClient/>}></Route>
                         <Route path='/webcam' element={<WebcamPage/>}></Route>
+                        <Route path='/recipes' element={<Recipes/>}></Route>
                     </Routes>
                 </div>
             </Router>

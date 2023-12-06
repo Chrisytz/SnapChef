@@ -43,6 +43,11 @@ function Header() {
                             </Link>
                         </li>
                         <li>
+                            <Link to='/recipes'>
+                                Recipes
+                            </Link>
+                        </li>
+                        <li>
                             <button className='btn' onClick={onLogout}>
                                 <FaSignOutAlt /> Logout
                             </button>

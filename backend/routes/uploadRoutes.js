@@ -9,9 +9,7 @@ const cors = require('cors')
 router.use(cors());
 
 require("../models/imageAIModel")
-require('../models/imageModel')
 
-const Images = mongoose.model("Image")
 const ImageModel = mongoose.model('ImageAI');
 
 const storage = multer.diskStorage({
@@ -54,7 +52,7 @@ router.post("/upload", upload.single('image'), (req, res) => {
         
     });
 
-    function storeImage() {
+    async function storeImage() {
         directoryPath = "runs/detect/predict"
         try {
             var files = fs.readdirSync(directoryPath).filter(fn => fn.startsWith('model'));
@@ -81,16 +79,16 @@ router.post("/upload", upload.single('image'), (req, res) => {
             
             image_str = "data:image/" + extension + ";base64," + base64str
             cur_img = image_str
-            ImageModel.create({id:"model",image:image_str});
+            const createdImage = await ImageModel.create({id:"model",image:image_str});
             
-            processJsonFile(image_str);
+            processJsonFile(image_str, createdImage);
         } catch(error) {
             console.log(error);
         }
         
     }
 
-    function processJsonFile(img) {
+    function processJsonFile(img, createdImage) {
         const jsonFilePath = '../objects.json';
         
         try {
@@ -99,6 +97,7 @@ router.post("/upload", upload.single('image'), (req, res) => {
             json = {}
             json.objects = jsonData
             json.images = {image: img}
+            json.id = createdImage.id
             res.json({json});
         } catch (err) {
             res.status(500).json({ error: "Error parsing JSON file", message: err.message });

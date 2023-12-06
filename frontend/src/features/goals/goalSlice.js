@@ -1,5 +1,4 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import authService from "../auth/authService";
 import goalService from './goalService'
 
 // every redux resource is gonna have the iserror, isloading, issuccess, message

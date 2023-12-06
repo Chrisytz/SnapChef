@@ -22,7 +22,6 @@ app.use('/api/goals', require('./routes/goalRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/', require('./routes/uploadRoutes'))
 app.use('/', require('./routes/previewRoutes'))
-app.use('/', require('./routes/imageRoutes'))
 // serve frontend
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../frontend/build')))

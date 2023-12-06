@@ -5,9 +5,7 @@ const cors = require('cors')
 router.use(cors());
 
 require("../models/imageAIModel")
-require('../models/imageModel')
 
-const Images = mongoose.model("Image")
 const ImageModel = mongoose.model('ImageAI');
 
 // Other middleware and configurations
@@ -18,7 +16,7 @@ router.get('/getPreviewModel', async (req, res) => {
         page: parseInt(page, 10),
         limit: parseInt(limit, 10),
       };
-      
+
       const images = await ImageModel.paginate({}, options);
       // Sort by createdAt field in ascending order
       res.json(images);

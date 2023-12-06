@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
 
-const Goal = require('../models/goalModel')
+const Goal = require('../models/recipeModel')
 const User = require('../models/userModel')
 
 // @desc    Get goals
@@ -8,7 +8,7 @@ const User = require('../models/userModel')
 // @access  Private
 const getGoals = asyncHandler(async (req, res) => {
     //! req.user is set in authMiddleware
-    const goals = await Goal.find({ user: req.user.id})
+    const goals = await Goal.find({ user: req.user.id}).populate('image_id')
     res.status(200).json(goals)
 })
 
@@ -26,6 +26,7 @@ const setGoal = asyncHandler(async (req, res) => {
         recipe_name: req.body.recipe_name,
         ingredients: req.body.ingredients,
         steps: req.body.steps,
+        image_id: req.body.image_id,
         user: req.user.id
     })
     res.status(200).json(goal)
