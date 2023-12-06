@@ -4,7 +4,7 @@ import {createGoal} from "../features/goals/goalSlice";
 import {useDispatch} from "react-redux";
 import "../styles/imageUpload.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import { faUpload} from '@fortawesome/free-solid-svg-icons';
 function ImageUpload() {
     const [finishedLoading, setFinishedLoading] = useState(false);
@@ -17,6 +17,8 @@ function ImageUpload() {
     const [errorMsg, setErrorMsg] = useState("")
 
     const [filename, setFilename] = useState("")
+
+    const [displayRecipe, setDisplayRecipe] = useState("")
 
     const statusCodeMessages = {
         420: "No ingredients found",
@@ -127,7 +129,7 @@ function ImageUpload() {
     return (
         <div className = "container">
 
-        <div className = "test-wrapper">
+        <div className = {!finishedLoading ? "test-wrapper" : "recipe"}>
         {!finishedLoading && <div className="submit-form" >
         {loadingButton && <div className="loader">
                                 <div className="loader-inner">
@@ -189,9 +191,7 @@ function ImageUpload() {
             </div>}
 
             {finishedLoading && <div> 
-                <button onClick={(event) => {setFinishedLoading(false); setFilename("")}} >
-                <span className="arrow">&#8592;</span> Back
-                </button>
+                <FontAwesomeIcon className = "arrow-left" icon = {faAngleLeft} onClick={(event) => {setFinishedLoading(false); setFilename("")}} />
                 </div>}
 
             
@@ -199,6 +199,20 @@ function ImageUpload() {
                
 
                 {finishedLoading && (<div className='goals'>
+
+                    <div class="card-container">
+                    <div class="card u-clearfix">
+                        <div class="card-body">
+                        
+                        <h2 class="card-title"> {recipeObject["recipe_name"]} </h2>
+                        <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
+                        <div class="card-read" onClick = {displayRecipe}>Read</div>
+                        <span class="card-tag card-circle subtle">C</span>
+                        </div>
+                        <center><img src={displayModel} alt="Preview" className="card-media" width = "300px"/> </center>
+                    </div>
+                    <div class="card-shadow"></div>
+                    </div>
 
                     <h2>{recipeObject["recipe_name"]}</h2>
                     <h3> Ingredients </h3>
