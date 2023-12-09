@@ -18,7 +18,7 @@ function ImageUpload() {
 
     const [filename, setFilename] = useState("")
 
-    const [displayRecipe, setDisplayRecipe] = useState("")
+    const [displayRecipe, setDisplayRecipe] = useState(false)
 
     const statusCodeMessages = {
         420: "No ingredients found",
@@ -126,6 +126,10 @@ function ImageUpload() {
         }
       };
 
+    const displayRecipes = (event) => {
+        setDisplayRecipe(!displayRecipe)
+    };
+
     return (
         <div className = "container">
 
@@ -206,11 +210,22 @@ function ImageUpload() {
                         
                         <h2 class="card-title"> {recipeObject["recipe_name"]} </h2>
                         <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
-                        <div class="card-read" onClick = {displayRecipe}>Read</div>
+                        <div class="card-read" onClick={displayRecipes}> {displayRecipe ? "Close" : "Read"} </div>
+                       
                         <span class="card-tag card-circle subtle">C</span>
                         </div>
+
+                        {displayRecipe && <div class = "recipe-display"> 
+                            <p>{recipeObject["steps"].map((ingredient, index) => (
+                            <div key={index} className="fade-in-element">{ingredient}</div>
+                            ))}</p>
+                            <div className = "image-upload-ingredient-display">
+                                <p> test</p>
+                            </div>
+                        </div>}
                         <center><img src={displayModel} alt="Preview" className="card-media" width = "300px"/> </center>
-                    </div>
+                        
+                        </div>
                     <div class="card-shadow"></div>
                     </div>
 
@@ -222,7 +237,7 @@ function ImageUpload() {
                                 {key}: {value}
                             </li>
                         ))}
-                    </ul>
+                    </ul>   
                     <h3> Steps </h3>
                     <p>{recipeObject["steps"].map((ingredient, index) => (
                         <div key={index}>{ingredient}</div>
