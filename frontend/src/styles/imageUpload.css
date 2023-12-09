@@ -516,6 +516,42 @@ transform: translate3d(100%, 0px, 0px);
     text-align: right;
     text-transform: uppercase;
   }
+
+  .card-ingredients {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    margin: 5px 0 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+  }
+
+  .card-steps {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    margin: 5px 0 20px;
+    position: relative;
+   
+    text-transform: uppercase;
+  }
+
+  .recipe-steps {
+    text-align: left;
+  }
+
+  .recipe-bold {
+    color: lightblue;
+  }
+
+  .recipe-ingredients {
+    text-align:right;
+  }
+  
   
   .card-read:after {
     background-color: #b8bddd;
@@ -566,4 +602,6 @@ transform: translate3d(100%, 0px, 0px);
     display:flex;
     justify-content: space-between; /* Adjusts space between the two divs */
     align-items: start; 
+    text-align: left;
+    font-size: 10px;
 }

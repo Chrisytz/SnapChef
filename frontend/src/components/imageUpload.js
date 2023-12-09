@@ -19,6 +19,8 @@ function ImageUpload() {
     const [filename, setFilename] = useState("")
 
     const [displayRecipe, setDisplayRecipe] = useState(false)
+    
+    const [ingredientStep, setIngredientStep] = useState(false)
 
     const statusCodeMessages = {
         420: "No ingredients found",
@@ -130,6 +132,11 @@ function ImageUpload() {
         setDisplayRecipe(!displayRecipe)
     };
 
+    const setStepIngredient = (state) => (event) => {
+        setIngredientStep(state)
+        console.log(state)
+    }
+
     return (
         <div className = "container">
 
@@ -211,18 +218,27 @@ function ImageUpload() {
                         <h2 class="card-title"> {recipeObject["recipe_name"]} </h2>
                         <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
                         <div class="card-read" onClick={displayRecipes}> {displayRecipe ? "Close" : "Read"} </div>
+                        {displayRecipe && <div className = "card-ingredients"> <span className={`recipe-steps ${ingredientStep ? "recipe-normal" : "recipe-bold"}`} onClick={setStepIngredient(false)}> Steps </span> 
+                                                                                    <span className={`recipe-ingredients ${ingredientStep ? "recipe-bold" : "recipe-normal"}`} onClick={setStepIngredient(true)}> Ingredients </span> </div>}
+                        
+                        {displayRecipe && <div class = "recipe-display"> 
+                            {!ingredientStep && <p>{recipeObject["steps"].map((ingredient, index) => (
+                            <div key={index} className="fade-in-element">{ingredient}</div>
+                            ))}</p>}
+
+                            {ingredientStep && Object.entries(recipeObject["ingredients"]).map(([key, value]) => (
+                                                        <li key={key}>
+                                                            {key}: {value}
+                                                        </li>
+                                                    ))}
+                        </div>}
+                        
+                       
                        
                         <span class="card-tag card-circle subtle">C</span>
                         </div>
 
-                        {displayRecipe && <div class = "recipe-display"> 
-                            <p>{recipeObject["steps"].map((ingredient, index) => (
-                            <div key={index} className="fade-in-element">{ingredient}</div>
-                            ))}</p>
-                            <div className = "image-upload-ingredient-display">
-                                <p> test</p>
-                            </div>
-                        </div>}
+                       
                         <center><img src={displayModel} alt="Preview" className="card-media" width = "300px"/> </center>
                         
                         </div>
