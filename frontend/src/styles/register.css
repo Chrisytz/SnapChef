@@ -1,0 +1,54 @@
+.register-form{
+    width: 65%;
+    margin: 0 auto;
+}
+
+.register-form-group {
+    margin-bottom: 10px;
+}
+
+.register-form-group input,
+.register-form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-family: inherit;
+}
+
+.register-form-group label {
+    text-align: left;
+    display: block;
+    margin: 0 0 5px 3px;
+}
+
+.register-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 1000px;
+    width: 80%;
+    margin: 100px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-image {
+    background-color: lightskyblue;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 55%;
+}
+
+.register-form {
+    width: 45%;
+    padding: 80px 30px;
+    padding-bottom: 250px;
+}
+
+.register-form-header {
+    padding-bottom: 40px;
+    text-align: left;
+}

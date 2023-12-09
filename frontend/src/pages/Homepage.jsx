@@ -1,38 +1,21 @@
-import {FaSignInAlt, FaSignOutAlt, FaUser} from "react-icons/fa";
-import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
+import '../styles/homepage.css'
 
 function Homepage() {
     const {user} = useSelector((state) => state.auth)
 
     return (
         <>
-            <h1>
-                Welcome to SnapChef :D
-            </h1>
-            {user ? (
-                <>
-                    <h3>
-                        Click on Dashboard to start generating recipes :D
-                    </h3>
-                </>
-            ) : (
-                <>
-                    <h3>
-                        Login or create an account to start cooking up some recipes uwu
-                    </h3>
-                    <div>
-                        <Link to='/login'>
-                            <FaSignInAlt /> Login
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to='/register'>
-                            <FaUser /> Register
-                        </Link>
-                    </div>
-                </>
-            )}
+            <div className='homepage-welcome-text'>
+                <h1>
+                    Snap. Cook. Enjoy.
+                </h1>
+                <h2>
+                    Elevate your cooking experience with your personalized culinary companion!
+                    Capture and turn snapshots into tasty delights, save your favorite recipes to revisit later, and transform every meal into a delicious memory.
+                </h2>
+            </div>
+            <button className='btn'> Get Started </button>
         </>
     )
 }

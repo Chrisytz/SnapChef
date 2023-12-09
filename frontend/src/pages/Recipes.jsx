@@ -4,8 +4,9 @@ import {useSelector, useDispatch} from "react-redux"
 
 import {getGoals, reset} from '../features/goals/goalSlice'
 import RecipePreview from "../components/recipePreview";
-import RecipeModal from "../components/RecipeModal";
+import RecipeModal from "../components/recipeModal";
 
+import '../styles/recipes.css'
 function Recipes() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -49,9 +50,9 @@ function Recipes() {
 
     return (
         <>
-            <section className='content'>
+            <section className='recipes-content'>
                 {goals.length > 0 ? (
-                    <div className='goals'>
+                    <div className='recipes-recipes'>
                         {[...goals]
                             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                             .map((goal) => (

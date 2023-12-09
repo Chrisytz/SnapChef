@@ -37,22 +37,6 @@ function Dashboard() {
 
     return (
         <>
-            <section className='heading'>
-                <h3> Welcome {user && user.name}</h3>
-                <p> Recipes Dashboard </p>
-            </section>
-
-            <section className='content'>
-                {goals.length > 0 ? (
-                    <div className='goals'>
-                        {[...goals]
-                            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                            .map((goal) => (
-                            <GoalItem key={goal._id} goal={goal}/>
-                        ))}
-                    </div>
-                ) : (<h3>You have not generated any recipes</h3>)}
-            </section>
         </>
     )
 }
