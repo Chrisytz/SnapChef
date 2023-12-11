@@ -21,8 +21,6 @@
 }
 
 .recipe {
-   
-  
     justify-content: center;
     white-space: normal; /* Allows text to wrap */
    
@@ -48,9 +46,14 @@
     transform: 
     translateX(-50%);
     color: white;
+    font-size: 30px;
 }
 
-.container {
+.image-upload-file-text {
+    font-size: 30px;
+}
+
+.image-upload-container {
     height: 100vh;
     position: relative;
 }

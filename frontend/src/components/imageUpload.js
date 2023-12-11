@@ -140,7 +140,7 @@ function ImageUpload() {
     }
 
     return (
-        <div className = "container">
+        <div className = "image-upload-container">
 
         <div className = {!finishedLoading ? "test-wrapper" : "recipe"}>
         {!finishedLoading && <div className="submit-form" >
@@ -173,7 +173,7 @@ function ImageUpload() {
             <form id = "uploadForm" encType = "multipart/form-data"> 
             <div className="wrapper">
             <div className="container2">
-                <h1>Upload a file</h1>
+                <h1 className="image-upload-file-text">Upload a file</h1>
                 <div className="upload-container">
                 <div className="border-container">
                     <div className="icons fa-4x">
