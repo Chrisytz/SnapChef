@@ -14,7 +14,7 @@
     align-items: center;
     background: linear-gradient(
         to bottom,
-        lightblue 30%,
+        var(--medium-slate-blue) 30%,
         white 30%
     );  
     position: relative; 
@@ -38,6 +38,7 @@
 .image-upload {
     display: inline-block;
     margin-top: 18%;
+    color: white;
 }
 
 .up-header {
@@ -46,6 +47,7 @@
     left: 50%;
     transform: 
     translateX(-50%);
+    color: white;
 }
 
 .container {
@@ -108,6 +110,8 @@ input[type="file"] {
     background-color: #e5e7eb;
   }
   
+ 
+
   .test-wrapper img {
     max-width: 50%;
     max-height: 50%;
@@ -226,12 +230,23 @@ input[type="file"] {
 	}
 }
 
+.button-text {
+    color: var(--ghost-white)
+  }
+
+.submit-button {
+    color: white;
+}
+
 .form-button {
-pointer-events: auto; cursor: pointer; border: none; padding: 1.5rem 3rem; margin: 0px; font-family: inherit; position: relative; display: inline-block; text-transform: uppercase; letter-spacing: 0.05rem; font-weight: 700; font-size: 0.85rem; border-radius: 0.5rem; overflow: hidden; color: rgb(255, 255, 255); background: rgb(231, 231, 231);
+pointer-events: auto; cursor: pointer; border: none; padding: 1.5rem 3rem; margin: 0px; font-family: inherit; position: relative; display: inline-block; text-transform: uppercase; letter-spacing: 0.05rem; font-weight: 700; font-size: 0.85rem; border-radius: 0.5rem; overflow: hidden; 
+color: var(--medium-slate-blue); 
+background: var(--tropical-indigo);
 }
 
 .form-button::before, .form-button::after {
 position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;
+
 }
 
 .form-button span {
@@ -239,7 +254,7 @@ position: relative; mix-blend-mode: difference;
 }
 
 .form-button::before {
-content: ""; background: rgb(0, 0, 0); width: 120%; left: -10%; transform: skew(30deg); transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1) 0s;
+content: ""; background: var(--thistle); width: 120%; left: -10%; transform: skew(30deg); transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1) 0s;
 }
 
 .form-button:hover::before {
@@ -270,7 +285,7 @@ transform: translate3d(100%, 0px, 0px);
   }
   
   .upload-container {
-    background-color: rgb(239, 239, 239);
+    background-color: var(--ghost-white);
     border-radius: 15px;
     padding: 10px;
     
@@ -281,7 +296,7 @@ transform: translate3d(100%, 0px, 0px);
   }
   
   .border-container {
-    border: 5px dashed rgba(198, 198, 198, 0.65);
+    border: 5px dashed var(--thistle);
        
     padding: 10%;
     width: 80%;
@@ -348,7 +363,7 @@ transform: translate3d(100%, 0px, 0px);
   
   .water-btn span {
     position: relative;
-    color: #fff;
+    color: var(--ghost-white);
     font-size: 20px;
     
     
@@ -362,7 +377,7 @@ transform: translate3d(100%, 0px, 0px);
     left: 0;
     width: 200px;
     height: 200px;
-    background: lightblue;
+    background: var(--tropical-indigo);
     box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
     transition: .5s;
   }
@@ -382,14 +397,14 @@ transform: translate3d(100%, 0px, 0px);
   .water-btn .liquid::before {
     
     border-radius: 45%;
-    background: white;
+    background: var(--medium-slate-blue);
     animation: animate 5s linear infinite;
   }
   
   .water-btn .liquid::after {
     
     border-radius: 40%;
-    background: white;
+    background: var(--thistle);
     animation: animate 10s linear infinite;
   }
   
@@ -406,7 +421,7 @@ transform: translate3d(100%, 0px, 0px);
     }
   }
   .water-text {
-    color: white;
+    color: var(--ghost-white);
     font-size: 18px;
     display: inline;
   }
@@ -425,7 +440,7 @@ transform: translate3d(100%, 0px, 0px);
   .arrow-left:hover {
     transform: scale(1.5); /* Arrow grows in size */
     transition: transform 0.3s ease, color 0.3s ease;
-    background-color: lightblue;
+    background-color: var(--medium-slate-blue);
   }
 
   *, *:before, *:after {
@@ -545,7 +560,7 @@ transform: translate3d(100%, 0px, 0px);
   }
 
   .recipe-bold {
-    color: lightblue;
+    color: var(--medium-slate-blue);
   }
 
   .recipe-ingredients {

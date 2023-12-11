@@ -194,7 +194,7 @@ function ImageUpload() {
             </div>
                 {!finishedLoading && <div className="error-message">{errorMsg}</div>}
                 <button type = "button" value = "Upload" onClick={uploadImage} className={`form-button ${loadingButton ? 'loading' : ''}`}> 
-                <span className="button-text">Submit</span>
+                <span className="button-text">  Submit </span>
                
                 </button>
             </form>
