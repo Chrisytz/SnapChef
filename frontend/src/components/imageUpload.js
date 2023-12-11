@@ -196,10 +196,11 @@ function ImageUpload() {
             </div>
             </div>
                 {!finishedLoading && <div className="error-message">{errorMsg}</div>}
+                <div className="image-upload-button-margin"> 
                 <button type = "button" value = "Upload" onClick={uploadImage} className={`form-button ${loadingButton ? 'loading' : ''}`}> 
                 <span className="button-text">  Submit </span>
-               
                 </button>
+                </div>
             </form>
             </center>
             </div>}
@@ -218,31 +219,32 @@ function ImageUpload() {
                     <div class="card u-clearfix">
                         <div class="card-body">
                         
-                        <h2 class="card-title"> {recipeObject["recipe_name"]} </h2>
-                        <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
-                        <div class="card-read" onClick={displayRecipes}> {displayRecipe ? "Close" : "Read"} </div>
                         {displayRecipe && <div className = "card-ingredients"> <span className={`recipe-steps ${ingredientStep ? "recipe-normal" : "recipe-bold"}`} onClick={setStepIngredient(false)}> Steps </span> 
                                                                                     <span className={`recipe-ingredients ${ingredientStep ? "recipe-bold" : "recipe-normal"}`} onClick={setStepIngredient(true)}> Ingredients </span> </div>}
                         
                         {displayRecipe && <div class = "recipe-display"> 
                             {!ingredientStep && <p>{recipeObject["steps"].map((ingredient, index) => (
-                            <div key={index} className="fade-in-element">{ingredient}</div>
+                            <div key={index} className="fade-in-element">
+                                <h3 className="image-upload-highlight-steps"> <h1 className="image-upload-highlight-index" >{index + 1} </h1> : {ingredient} </h3> </div>
                             ))}</p>}
 
                             {ingredientStep && Object.entries(recipeObject["ingredients"]).map(([key, value]) => (
-                                                        <li key={key}>
-                                                            {key}: {value}
+                                                        <li key={key} className = "image-upload-ingredient-list">
+                                                            <h1 className="image-upload-highlight-ingredient"> {key} </h1>: {value}
                                                         </li>
                                                     ))}
                         </div>}
-                        
-                       
+
+
+                       {!displayRecipe && <div><h2 class="card-title"> {recipeObject["recipe_name"]} </h2>
+                        <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span> </div>}
+                        <div class="card-read" onClick={displayRecipes}> {displayRecipe ? "Close" : "Read"} </div>
                        
                         <span class="card-tag card-circle subtle">C</span>
                         </div>
 
                        
-                        <center><img src={displayModel} alt="Preview" className="card-media" width = "300px"/> </center>
+                        <center><img src={displayModel} alt="Preview" className="card-media" width = "380px"/> </center>
                         
                         </div>
                     <div class="card-shadow"></div>
@@ -259,7 +261,9 @@ function ImageUpload() {
                     </ul>   
                     <h3> Steps </h3>
                     <div>{recipeObject["steps"].map((ingredient, index) => (
-                        <div key={index}>{ingredient}</div>
+                        <div key={index}>
+                            {ingredient}
+                        </div>
                     ))}</div>
                 </div>)}
 

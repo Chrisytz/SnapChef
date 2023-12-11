@@ -35,7 +35,7 @@
 
 .image-upload {
     display: inline-block;
-    margin-top: 18%;
+    margin-top: 20%;
     color: white;
 }
 
@@ -47,10 +47,13 @@
     translateX(-50%);
     color: white;
     font-size: 30px;
+    margin-bottom: 50vh;
+    margin-top: -3vh;
 }
 
 .image-upload-file-text {
     font-size: 30px;
+    margin-top: -4vh;
 }
 
 .image-upload-container {
@@ -125,16 +128,19 @@ input[type="file"] {
     
   }
 
+  .image-upload-button-margin {
+    margin-top: -3vh;
+  }
+
   .form-input {
     display: none;
+    
   }
   .form-button {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: -10000%;
     justify-content: center;
-  }
-
-.form-button {
+ 
     position: relative;
 }
 /* CSS */
@@ -291,7 +297,7 @@ transform: translate3d(100%, 0px, 0px);
     background-color: var(--ghost-white);
     border-radius: 15px;
     padding: 10px;
-    
+    margin-bottom: 0vh;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -300,16 +306,14 @@ transform: translate3d(100%, 0px, 0px);
   
   .border-container {
     border: 5px dashed var(--thistle);
-       
+    margin-bottom: 0vh;
     padding: 10%;
-    width: 80%;
     
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: auto; /* or any specific size */
+    
+   
+   
     display: flex;
   }
   
@@ -318,7 +322,7 @@ transform: translate3d(100%, 0px, 0px);
     font-weight: 600;
     font-size: 1.1em;
     letter-spacing: -1px;
-    margin-top: 30px;
+   
     margin-bottom: 0;
     opacity: 0.65;
     width: 80%;
@@ -342,8 +346,9 @@ transform: translate3d(100%, 0px, 0px);
 
   .container2 {
     background-color: #f9f9f9;
-    padding: 20px;
+    padding:11vh;
     border-radius: 10px;
+    margin-bottom: 10%;
     /*border: 0.5px solid rgba(130, 130, 130, 0.25);*/
     /*box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 
                 0 0 0 1px rgba(0, 0, 0, 0.1);*/
@@ -353,7 +358,7 @@ transform: translate3d(100%, 0px, 0px);
   }
   
   .water-btn {
-    margin-top: 30%;
+    margin-top: 40%;
     position: absolute;
     padding: 20px 50px;
     display: flex;
@@ -471,7 +476,9 @@ transform: translate3d(100%, 0px, 0px);
   .card-container {
     margin: 25px auto 0;
     position: relative;
-    width: 692px;
+    width: 100vh;
+   
+ 
   }
   
   .card {
@@ -480,11 +487,17 @@ transform: translate3d(100%, 0px, 0px);
     position: relative;
     box-shadow: 0 0 5px rgba(75, 75, 75, .07);
     z-index: 1;
+    border-radius: 2%;
+    height: 40vh;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;;
   }
   
   .card-body {
     float: left;
-    width: 310px;
+    width: 50vh;
   }
   
   .card-number {
@@ -560,6 +573,7 @@ transform: translate3d(100%, 0px, 0px);
 
   .recipe-steps {
     text-align: left;
+   
   }
 
   .recipe-bold {
@@ -578,7 +592,7 @@ transform: translate3d(100%, 0px, 0px);
     height: 1px;
     position: absolute;
     top: 9px;
-    width: 75%;
+    width: 80%;
   }
   
   .card-tag {
@@ -617,9 +631,36 @@ transform: translate3d(100%, 0px, 0px);
 }
 
 .recipe-display {
-    display:flex;
+  
     justify-content: space-between; /* Adjusts space between the two divs */
     align-items: start; 
     text-align: left;
     font-size: 10px;
+}
+
+.image-upload-ingredient-list {
+    list-style-type: none; /* Remove default list item bullets */
+    text-transform: capitalize;
+    font-size: 14px; 
+  
+}
+
+.image-upload-highlight-ingredient {
+    font-style: bold;
+    font-size: 15px;
+    display: inline;
+}
+
+.image-upload-highlight-steps {
+    font-style: None;
+    font-size: 15px;
+    display: inline;
+    font-weight: normal;
+}
+
+.image-upload-highlight-index {
+   
+    font-size: 15px;
+    display: inline;
+    font-weight: bold;
 }
