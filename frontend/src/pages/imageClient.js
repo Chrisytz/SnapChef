@@ -2,7 +2,7 @@ import ImageUpload from '../components/imageUpload';
 
 const ImageClient = () => {
     return (
-        <div className = "App"> 
+        <div className = "image-client"> 
             <ImageUpload />
         </div>
     );

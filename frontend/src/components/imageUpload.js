@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import {createGoal} from "../features/goals/goalSlice";
 import {useDispatch} from "react-redux";
 import "../styles/imageUpload.css"
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import { faUpload} from '@fortawesome/free-solid-svg-icons';
