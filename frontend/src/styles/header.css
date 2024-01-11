@@ -36,3 +36,9 @@
 .header ul li a svg {
     margin-right: 5px;
 }
+
+.header-logreg {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+}

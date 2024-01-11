@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {FaUser} from 'react-icons/fa'
 import {useSelector, useDispatch} from "react-redux"
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import {toast} from "react-toastify";
 import {register, reset} from '../features/auth/authSlice'
 import Spinner from '../components/spinner'
@@ -65,7 +65,9 @@ function Register() {
         return <Spinner />
     }
 
-    return <>
+    return (
+        <div style={{backgroundColor: '#e6e6e6', height:'100vh'}}>
+
         <section className='register-page'>
             <div className='register-image'>
                 INSERT IMAGE HERE
@@ -115,9 +117,13 @@ function Register() {
                         <button type='submit' className='btn  btn-block'> Submit </button>
                     </div>
                 </form>
+                <Link to='/login'>
+                    Already have an account? Login here.
+                </Link>
             </section>
         </section>
-    </>
+    </div>
+    )
 }
 
 export default Register

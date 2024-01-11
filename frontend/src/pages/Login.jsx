@@ -6,6 +6,8 @@ import {toast} from "react-toastify";
 import {login, reset} from '../features/auth/authSlice'
 import Spinner from '../components/spinner'
 import '../styles/login.css'
+import { Link } from 'react-router-dom';
+
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -60,7 +62,8 @@ function Login() {
         return <Spinner/>
     }
 
-    return <>
+    return (
+        <div style={{backgroundColor: '#e6e6e6', height:'100vh'}}>
         <section className='login-page'>
             <div className='login-image'>
                 INSERT IMAGE HERE
@@ -92,9 +95,13 @@ function Login() {
                         <button type='submit' className='btn  btn-block'> Submit </button>
                     </div>
                 </form>
+                <Link to='/register'>
+                    New to SnapChef? Register here.
+                </Link>
             </section>
         </section>
-    </>
+        </div>
+    )
 }
 
 export default Login

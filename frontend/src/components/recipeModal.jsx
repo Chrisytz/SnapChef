@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import "../styles/recipeModal.css"
 function RecipeModal({goal, onClose}) {
     const [contentToShow, setContentToShow] = useState('');
+    const [activeButton, setActiveButton] = useState('');
+
     const ingredientsMap = JSON.parse(goal.ingredients)
 
     useEffect(() => {
@@ -21,7 +23,12 @@ function RecipeModal({goal, onClose}) {
                     )
                 )}
             </div>
-
+        )
+        setActiveButton(
+            <div className='recipe-modal-buttons'>
+                <button className='recipe-modal-button'  style={{color: "black", borderColor: "deeppink"}} onClick={showIngredientsClicked}> INGREDIENTS </button>
+                <button className='recipe-modal-button' onClick={showStepsClicked}> PREPARATION </button>
+            </div>
         )
     }
 
@@ -39,6 +46,13 @@ function RecipeModal({goal, onClose}) {
                     </div>))}
             </div>
         )
+        setActiveButton(
+            <div className='recipe-modal-buttons'>
+                <button className='recipe-modal-button' onClick={showIngredientsClicked}> INGREDIENTS </button>
+                <button className='recipe-modal-button' style={{color: "black", borderColor: "deeppink"}} onClick={showStepsClicked}> PREPARATION </button>
+            </div>
+        )
+
     }
 
 
@@ -48,13 +62,9 @@ function RecipeModal({goal, onClose}) {
                 <img className="recipe-modal-image" src={goal.image_id.image} alt="Description of the image" />
                 <div className='recipe-modal-info-container'>
                     <div className='recipe-modal-info-container-abs'>
-                        <div className='recipe-modal-buttons'>
-                            <button className='recipe-modal-button' onClick={showIngredientsClicked}> INGREDIENTS </button>
-                            <button className='recipe-modal-button' onClick={showStepsClicked}> PREPARATION </button>
-
-                        </div>
+                        {activeButton}
                         <divx> {contentToShow} </divx>
-                        <button onClick={onClose}> CLOSE</button>
+                        <button className='recipe-modal-close-button' onClick={onClose}> CLOSE</button>
                     </div>
                 </div>
             </div>

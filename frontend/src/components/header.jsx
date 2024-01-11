@@ -17,16 +17,18 @@ function Header() {
 
     return (
         <header className='header'>
-            <div className='logo'>
-                <Link to='/'> SnapChef </Link>
 
-            </div>
+            <ul className='header-contents'>
+                <div className='logo'>
+                    <Link to='/'> SNAPCHEF </Link>
 
-            <ul>
+                </div>
                 {user ? (
                     <>
                         <li>
-                            <Link to='/dashboard'> Dashboard </Link>
+                            <Link to='/'>
+                                Home
+                            </Link>
                         </li>
                         <li>
                             <Link to='/image'>
@@ -36,11 +38,6 @@ function Header() {
                         <li>
                             <Link to='/webcam'>
                                 Webcam
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/history'>
-                                History
                             </Link>
                         </li>
                         <li>
@@ -56,7 +53,7 @@ function Header() {
                     </>
 
                 ) : (
-                    <>
+                    <div className='header-logreg'>
                         <li>
                             <Link to='/login'>
                                 <FaSignInAlt /> Login
@@ -67,7 +64,7 @@ function Header() {
                                 <FaUser /> Register
                             </Link>
                         </li>
-                    </>
+                    </div>
                 )}
 
             </ul>
