@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useSelector, useDispatch} from "react-redux"
 
@@ -19,15 +19,28 @@ function Recipes() {
     const [selectedGoal, setSelectedGoal] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
 
+    const modalRef = useRef()
+
     const openModal = (goal) => {
         setSelectedGoal(goal);
         setModalVisible(true);
+        document.addEventListener('mousedown', handleOutsideClick);
     };
 
     const closeModal = () => {
         setSelectedGoal(null);
         setModalVisible(false);
+        document.removeEventListener('mousedown', handleOutsideClick);
     };
+
+    const handleOutsideClick = (event) => {
+        // Close modal if the click is outside the modal content
+        if (modalRef.current) {
+            closeModal();
+        }
+    };
+
+
 
     // this is run after the initial render, when the component updates (state or props change) and when component is unmounted
     // state includes the 'text' variable in GoalForm (const [text, setText] = useState(''))
@@ -49,7 +62,7 @@ function Recipes() {
 
 
     return (
-        <>
+        <div className='recipes-container'>
             <section className='recipes-content'>
                 {goals.length > 0 ? (
                     <div className='recipes-recipes'>
@@ -65,7 +78,7 @@ function Recipes() {
                     <RecipeModal goal={selectedGoal} onClose={closeModal} />
                 )}
             </section>
-        </>
+        </div>
     )
 }
 

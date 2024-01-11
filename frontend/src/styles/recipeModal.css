@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(75, 75, 97, 0.75);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,12 +12,113 @@
 }
 
 .recipe-modal-container {
-    max-width: 600px;
-    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.recipe-modal-image {
+    width: 350px;
+    height: 50vh;
+    object-fit: cover;
+    margin-right: -10px;
+    z-index: 2;
+    border-radius: 8px;
+    box-shadow: 20px 0px 40px rgba(0, 0, 0, 0.2);
+}
+.recipe-modal-info-container {
+    width: 550px;
     max-height: 80vh; /* 80% of viewport height */
+    height: 40vh;
+}
+
+.recipe-modal-info-container-abs {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     overflow: auto; /* Enable scrolling if content exceeds the max height */
-    background-color: #fff;
-    padding: 20px;
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 550px;
+    max-height: 80vh; /* 80% of viewport height */
+    height: 40vh;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.recipe-modal-buttons {
+    padding: 0 100px;
+    /*margin: 0 100px;*/
+    display: flex;
+    justify-content: space-between; /* Add this line */
+    border-bottom: solid;
+    border-width: 3px;
+    border-color: #eaeaea;
+}
+
+.recipe-modal-button {
+    padding: 0;
+    margin: 0;
+    height: 70px;
+    font-weight: 900;
+    font-size: 16px;
+    color: gray;
+    background-color: transparent;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top: solid;
+    border-color: white;
+    border-width: 6px;
+}
+
+.recipe-modal-button:hover,
+.recipe-modal-button:focus{
+    color: black;
+    border-color: deeppink;
+}
+
+.recipe-modal-preparation {
+    margin: 0 50px;
+    text-align: left;
+}
+
+.recipe-modal-preparation-step-container{
+
+}
+
+.recipe-modal-preparation-step-number{
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+.recipe-modal-preparation-step-instructions{
+    margin-left: 10px;
+    padding: 25px 0 25px 30px;
+    font-size: 14px;
+    color: gray;
+    border-left: solid;
+    border-width: 2px;
+    border-color: #eaeaea;
+}
+
+.recipe-modal-ingredients {
+    margin: 20px 50px;
+    text-align: left;
+
+}
+
+.recipe-modal-ingredient-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.recipe-modal-ingredient{
+    margin: 10px 15px;
+}
+
+.checkbox-list {
+    /* Original size: 14px */
+    transform: scale(1.25); /* Increase the size as needed */
 }
