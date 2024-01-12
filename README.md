@@ -18,11 +18,6 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 
 
 
@@ -33,7 +28,7 @@
 
   <p align="center">
     Your personalized AI chef
-    <br />
+<!--     <br />
     <a href="https://github.com/Chrisytz/SnapChef"><strong>Explore the docs »</strong></a>
     <br />
     <br />
@@ -42,75 +37,47 @@
     <a href="https://github.com/Chrisytz/SnapChef/issues">Report Bug</a>
     ·
     <a href="https://github.com/Chrisytz/SnapChef/issues">Request Feature</a>
-  </p>
+  </p> -->
 </div>
-
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
 
 
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-The project has not been deployed yet and is still in development, it will be deployed on AWS or Heroku. Here is a quick overview of what is coming up:
+The project has not been deployed yet. Here is a quick overview of what is coming up:
 
 SnapChef allows users to take realtime video of ingredients or can also upload images to our website. The site will then generate a recipe via ChatGPT instructing users what they can make with their ingredients. Consumers can preview their history if they want to access previous requests.
 
 Users can sign in via the login page using email and password:
 
+
+
 After signing in, you can upload an image or open your webcam to do food object detection.
-<img width="771" alt="Screen Shot 2023-12-02 at 1 55 52 PM" src="https://github.com/Chrisytz/SnapChef/assets/52054778/6828e07f-0b42-4c08-be5e-a1a902d32ac5">
 
-https://github.com/Chrisytz/SnapChef/assets/52054778/5fcfc68d-ef09-4c28-b938-a68ce472b180
+
+https://github.com/Chrisytz/SnapChef/assets/52054778/dfaef746-d388-420d-9ac2-b3742c78c003
+
+
+
+
+You can then open your webcam to detect different foods. ChatGPT will then give you a recipe you can make from your given ingredients.
+
+
+
+https://github.com/Chrisytz/SnapChef/assets/52054778/ac14b842-17b7-4865-aaa5-a085ae4f7b81
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Tools Used
 
-
-### Built With
-
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+This project was built with a Node and Flask backend. The webcam is managed by Flask. Our Node backend uses MongoDB to store user information. The frontend is managed with React and Redux.
 
 
 
-<!-- GETTING STARTED -->
+<!--
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
@@ -144,7 +111,7 @@ This is an example of how to list things you need to use the software and how to
 
 
 
-<!-- USAGE EXAMPLES -->
+<!--
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
@@ -155,7 +122,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 
-<!-- ROADMAP -->
+<!-- ROADMAP 
 ## Roadmap
 
 - [ ] Feature 1
@@ -169,7 +136,7 @@ See the [open issues](https://github.com/Chrisytz/SnapChef/issues) for a full li
 
 
 
-<!-- CONTRIBUTING -->
+<!-- CONTRIBUTING
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -187,7 +154,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
+<!-- LICENSE 
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
@@ -196,7 +163,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 
-<!-- CONTACT -->
+<!-- CONTACT 
 ## Contact
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
@@ -207,7 +174,7 @@ Project Link: [https://github.com/Chrisytz/SnapChef](https://github.com/Chrisytz
 
 
 
-<!-- ACKNOWLEDGMENTS -->
+<!-- ACKNOWLEDGMENTS 
 ## Acknowledgments
 
 * []()
@@ -218,8 +185,8 @@ Project Link: [https://github.com/Chrisytz/SnapChef](https://github.com/Chrisytz
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!-- MARKDOWN LINKS & IMAGES 
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links 
 [contributors-shield]: https://img.shields.io/github/contributors/Chrisytz/SnapChef.svg?style=for-the-badge
 [contributors-url]: https://github.com/Chrisytz/SnapChef/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Chrisytz/SnapChef.svg?style=for-the-badge
