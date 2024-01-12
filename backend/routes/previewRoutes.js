@@ -26,7 +26,8 @@ router.get('/getPreviewModel', async (req, res) => {
   });
 
   router.get('/', async (req, res) => {
-    res.send({hello: "hello"})
+    res.send({hello: "hello", api: process.env})
+    
   });
 
 // Other routes and middleware

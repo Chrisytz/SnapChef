@@ -35,13 +35,13 @@
 
 .image-upload {
     display: inline-block;
-    margin-top: 20%;
+    margin-top: 0%;
     color: white;
 }
 
 .up-header {
     position: absolute;
-    top: 10%;
+    top: 7%;
     left: 50%;
     transform: 
     translateX(-50%);
@@ -53,7 +53,7 @@
 
 .image-upload-file-text {
     font-size: 30px;
-    margin-top: -4vh;
+    margin-top: -10vh;
 }
 
 .image-upload-container {
@@ -297,7 +297,7 @@ transform: translate3d(100%, 0px, 0px);
     background-color: var(--ghost-white);
     border-radius: 15px;
     padding: 10px;
-    margin-bottom: 0vh;
+    margin-bottom: -10vh;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -308,7 +308,7 @@ transform: translate3d(100%, 0px, 0px);
     border: 5px dashed var(--thistle);
     margin-bottom: 0vh;
     padding: 10%;
-    
+    height: 20vh;
     justify-content: center;
     align-items: center;
     
@@ -348,7 +348,7 @@ transform: translate3d(100%, 0px, 0px);
     background-color: #f9f9f9;
     padding:11vh;
     border-radius: 10px;
-    margin-bottom: 10%;
+    margin-bottom: 20%;
     /*border: 0.5px solid rgba(130, 130, 130, 0.25);*/
     /*box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 
                 0 0 0 1px rgba(0, 0, 0, 0.1);*/

@@ -5,7 +5,7 @@ import {Link, useNavigate} from "react-router-dom"
 import {toast} from "react-toastify";
 import {register, reset} from '../features/auth/authSlice'
 import Spinner from '../components/spinner'
-
+import robotImage from "./assets/robot.png"
 import '../styles/register.css'
 
 function Register() {
@@ -70,7 +70,7 @@ function Register() {
 
         <section className='register-page'>
             <div className='register-image'>
-                INSERT IMAGE HERE
+                <img src = {robotImage} alt = "myrobot" />
             </div>
             <section className='register-form'>
                 <h2 className='register-form-header'>

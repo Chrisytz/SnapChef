@@ -30,27 +30,27 @@ function ImageUpload() {
     }
 
     const openai = new OpenAI({apiKey: process.env.REACT_APP_GPT_API_KEY, dangerouslyAllowBrowser: true});
-        const dispatch = useDispatch()
-    
-        async function getRecipe(ingredients) {
-            const completion = await openai.chat.completions.create({
-                messages: [
-                    { role: "system", content:
-                            "you are a chef who is going to give out simple recipes with ingredients and steps based on a list of ingredients the user will provide in JSON format." +
-                            "Please also add the necessary spices and ingredients, make sure the ones you add are common in households" +
-                            "Here are the specifications of the formatting." +
-                            "The name of the recipe should be a key value pair with the key being \"recipe_name\"" +
-                            "The ingredients of the recipe should be in a nested dictionary with key \"ingredients\" and inside that nested dictionary" +
-                            "each ingredient should have the key be the ingredient name and the value be the quantity/details" +
-                            "finally the steps to prepare the recipe should be in a list with key \"steps\""},
-                    { role: "user", content: ingredients}],
-                model: "gpt-3.5-turbo-1106",
-                response_format: { type: "json_object" },
-            });
-    
-            console.log(completion.choices[0].message.content);
-            return completion.choices[0].message.content
-        }
+    const dispatch = useDispatch()
+
+    async function getRecipe(ingredients) {
+        const completion = await openai.chat.completions.create({
+            messages: [
+                { role: "system", content:
+                        "you are a chef who is going to give out simple recipes with ingredients and steps based on a list of ingredients the user will provide in JSON format." +
+                        "Please also add the necessary spices and ingredients, make sure the ones you add are common in households" +
+                        "Here are the specifications of the formatting." +
+                        "The name of the recipe should be a key value pair with the key being \"recipe_name\"" +
+                        "The ingredients of the recipe should be in a nested dictionary with key \"ingredients\" and inside that nested dictionary" +
+                        "each ingredient should have the key be the ingredient name and the value be the quantity/details" +
+                        "finally the steps to prepare the recipe should be in a list with key \"steps\""},
+                { role: "user", content: ingredients}],
+            model: "gpt-3.5-turbo-1106",
+            response_format: { type: "json_object" },
+        });
+
+        console.log(completion.choices[0].message.content);
+        return completion.choices[0].message.content
+    }
     
     function uploadImage() {
         setLoadingButton(true);
@@ -235,7 +235,6 @@ function ImageUpload() {
                                                     ))}
                         </div>}
 
-
                        {!displayRecipe && <div><h2 class="card-title"> {recipeObject["recipe_name"]} </h2>
                         <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span> </div>}
                         <div class="card-read" onClick={displayRecipes}> {displayRecipe ? "Close" : "Read"} </div>
@@ -243,37 +242,15 @@ function ImageUpload() {
                         <span class="card-tag card-circle subtle">C</span>
                         </div>
 
-                       
                         <center><img src={displayModel} alt="Preview" className="card-media" width = "380px"/> </center>
                         
                         </div>
                     <div class="card-shadow"></div>
                     </div>
-
-                    <h2>{recipeObject["recipe_name"]}</h2>
-                    <h3> Ingredients </h3>
-                    <ul>
-                        {Object.entries(recipeObject["ingredients"]).map(([key, value]) => (
-                            <li key={key}>
-                                {key}: {value}
-                            </li>
-                        ))}
-                    </ul>   
-                    <h3> Steps </h3>
-                    <div>{recipeObject["steps"].map((ingredient, index) => (
-                        <div key={index}>
-                            {ingredient}
-                        </div>
-                    ))}</div>
+                   
                 </div>)}
 
-                {finishedLoading && (
-                    <div>
-                    <h2>Image Preview:</h2>
-                    <center><img src={displayModel} alt="Preview" /> </center>
-                    </div>
-                )}
-                </div>
+            </div>
 
            
         </div>
