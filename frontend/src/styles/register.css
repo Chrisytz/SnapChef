@@ -37,10 +37,11 @@
 }
 
 .register-image {
-    background-color: lightskyblue;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
     width: 55%;
+    background: url(robot.png)  center center;
+    background-size: cover;
 }
 
 .register-form {

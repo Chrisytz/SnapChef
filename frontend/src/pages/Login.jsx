@@ -7,7 +7,7 @@ import {login, reset} from '../features/auth/authSlice'
 import Spinner from '../components/spinner'
 import '../styles/login.css'
 import { Link } from 'react-router-dom';
-import robotImage from "./assets/robot.png";
+import robotImage from "../styles/robot.png";
 
 
 function Login() {
@@ -67,7 +67,7 @@ function Login() {
         <div style={{backgroundColor: '#e6e6e6', height:'100vh'}}>
         <section className='login-page'>
             <div className='login-image'>
-                <img src = {robotImage} alt = "Robot"/>
+                {/*<img src = {robotImage} alt = "Robot"/>*/}
             </div>
             <section className='login-form'>
                 <h2 className='login-form-header'>
