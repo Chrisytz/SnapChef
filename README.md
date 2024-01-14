@@ -55,8 +55,8 @@ https://github.com/Chrisytz/SnapChef/assets/52107461/26b67a5f-051b-41c1-a018-c06
 
 After signing in, you can upload an image or open your webcam to do food object detection.
 
+https://github.com/Chrisytz/SnapChef/assets/52054778/6490357e-2f60-4716-a409-a1863defb592
 
-https://github.com/Chrisytz/SnapChef/assets/52054778/dfaef746-d388-420d-9ac2-b3742c78c003
 
 
 
