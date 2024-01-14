@@ -20,7 +20,6 @@
 -->
 
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -51,6 +50,7 @@ SnapChef allows users to take realtime video of ingredients or can also upload i
 
 Users can sign in via the login page using email and password:
 
+https://github.com/Chrisytz/SnapChef/assets/52107461/26b67a5f-051b-41c1-a018-c064b46589b5
 
 
 After signing in, you can upload an image or open your webcam to do food object detection.
