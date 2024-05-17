@@ -46,7 +46,7 @@
 
 The project has not been deployed yet. Here is a quick overview of what is coming up:
 
-SnapChef allows users to take realtime video of ingredients or can also upload images to our website. The site will then generate a recipe via ChatGPT instructing users what they can make with their ingredients. Consumers can preview their history if they want to access previous requests.
+SnapChef allows users to take realtime video of ingredients or can also upload images to our website. The site will then generate a recipe via Cohere Chat API instructing users what they can make with their ingredients. Consumers can preview their history if they want to access previous requests.
 
 Users can sign in via the login page using email and password:
 
@@ -61,7 +61,7 @@ https://github.com/Chrisytz/SnapChef/assets/52054778/6490357e-2f60-4716-a409-a18
 
 
 
-You can then open your webcam to detect different foods. ChatGPT will then give you a recipe you can make from your given ingredients.
+You can then open your webcam to detect different foods. Cohere API will then give you a recipe you can make from your given ingredients.
 
 
 
